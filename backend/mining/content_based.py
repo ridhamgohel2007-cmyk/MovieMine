@@ -86,8 +86,10 @@ class ContentBasedRecommender:
                 "movie_id": int(row["movie_id"]),
                 "title": row["title"],
                 "release_year": int(row["release_year"]),
+                "duration": int(row.get("duration", 120)),
                 "genres": row["genres"],
                 "imdb_rating": float(row["imdb_rating"]),
+                "poster_url": row.get("poster_url", ""),
                 "score": round(float(score), 4),
                 "match_percentage": int(min(round(float(score) * 100), 100)),
                 "recommendation_method": "Content-Based Filtering"
@@ -115,8 +117,10 @@ class ContentBasedRecommender:
                 "movie_id": int(r["movie_id"]),
                 "title": r["title"],
                 "release_year": int(r["release_year"]),
+                "duration": int(r.get("duration", 120)),
                 "genres": r["genres"],
                 "imdb_rating": float(r["imdb_rating"]),
+                "poster_url": r.get("poster_url", ""),
                 "score": round(float(r["imdb_rating"] / 10.0), 4),
                 "match_percentage": int(round((r["imdb_rating"] / 10.0) * 100)),
                 "recommendation_method": "Content-Based (Popularity Fallback)"
@@ -145,8 +149,10 @@ class ContentBasedRecommender:
                     "movie_id": int(row["movie_id"]),
                     "title": row["title"],
                     "release_year": int(row["release_year"]),
+                    "duration": int(row.get("duration", 120)),
                     "genres": row["genres"],
                     "imdb_rating": float(row["imdb_rating"]),
+                    "poster_url": row.get("poster_url", ""),
                     "score": round(norm_score, 4),
                     "match_percentage": int(min(round(norm_score * 100), 100)),
                     "recommendation_method": "Content-Based Filtering"

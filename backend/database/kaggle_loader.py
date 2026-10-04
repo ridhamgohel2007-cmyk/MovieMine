@@ -127,7 +127,23 @@ ADDITIONAL_TEMPLATES = [
     ("Top Gun: Maverick", 2022, 130, "After thirty years, Maverick is still pushing the envelope as a top naval aviator, but must confront ghosts of his past.", "English", 8.2, ["Action", "Drama"], "https://image.tmdb.org/t/p/w500/62HCnUTziyWcpDaBO2i1DX17ljH.jpg"),
     ("Spider-Man 2", 2004, 127, "Peter Parker is beset with troubles in his failing personal life as he battles a brilliant scientist named Doctor Otto Octavius.", "English", 7.4, ["Action", "Sci-Fi"], "https://image.tmdb.org/t/p/w500/olxpyq94zk2HQnTe5c9AzV29hdL.jpg"),
     ("Casino Royale", 2006, 144, "After earning 00 status, secret agent James Bond embarks on his first mission to prevent a private banker from winning a high-stakes poker game.", "English", 8.0, ["Action", "Adventure", "Thriller"], "https://image.tmdb.org/t/p/w500/zlPuvt61m3J4sJ0bX3vM047jBsm.jpg"),
-    ("Skyfall", 2012, 143, "James Bond's loyalty to M is tested when her past comes back to haunt her. When MI6 comes under attack, 007 must track down and destroy the threat.", "English", 7.8, ["Action", "Adventure", "Thriller"], "https://image.tmdb.org/t/p/w500/izr0b9Vw2k7K5A4yB1H6n362N.jpg")
+    ("Skyfall", 2012, 143, "James Bond's loyalty to M is tested when her past comes back to haunt her. When MI6 comes under attack, 007 must track down and destroy the threat.", "English", 7.8, ["Action", "Adventure", "Thriller"], "https://image.tmdb.org/t/p/w500/izr0b9Vw2k7K5A4yB1H6n362N.jpg"),
+    ("The Batman", 2022, 176, "When a sadistic serial killer begins murdering key political figures in Gotham, Batman is forced to investigate the city's hidden corruption.", "English", 7.8, ["Action", "Crime", "Drama"], "https://image.tmdb.org/t/p/w500/74xTEgt7R36Fpooo50r9T25onhq.jpg"),
+    ("Barbie", 2023, 114, "Barbie and Ken are having the time of their lives in the colorful and seemingly perfect world of Barbie Land.", "English", 7.0, ["Adventure", "Comedy", "Fantasy"], "https://image.tmdb.org/t/p/w500/iuFNMS8U5cb6xfzi51Dbkovj7vM.jpg"),
+    ("Ratatouille", 2007, 111, "A rat who can cook makes an unusual alliance with a young kitchen worker at a famous Paris restaurant.", "English", 8.1, ["Animation", "Comedy", "Family"], "https://image.tmdb.org/t/p/w500/npHNjld27z94bRP9AoUgUd9b3h.jpg"),
+    ("Monsters, Inc.", 2001, 92, "In order to power the city, monsters have to scare children so that they scream. However, the children are toxic to the monsters.", "English", 8.1, ["Animation", "Adventure", "Comedy"], "https://image.tmdb.org/t/p/w500/sgheTgkvjKx6tr2Um6QeVN7xJg9.jpg"),
+    ("The Incredibles", 2004, 115, "While trying to lead a quiet suburban life, a family of undercover superheroes are forced into action to save the world.", "English", 8.0, ["Animation", "Action", "Adventure"], "https://image.tmdb.org/t/p/w500/2LqaLgk4Z226KkgPJuiOQ58wvrm.jpg"),
+    ("How to Train Your Dragon", 2010, 98, "A hapless young Viking who aspires to hunt dragons becomes the unlikely friend of a young dragon himself.", "English", 8.1, ["Animation", "Action", "Adventure"], "https://image.tmdb.org/t/p/w500/ygGmAO60t8GyqUo9xYeUr9x4H3C.jpg"),
+    ("Catch Me If You Can", 2002, 141, "Barely 21 yet, Frank is a skilled forger who has passed as a doctor, lawyer and pilot. FBI agent Carl becomes obsessed with tracking him down.", "English", 8.1, ["Biography", "Crime", "Drama"], "https://image.tmdb.org/t/p/w500/ctjEj2xM322B19F2k7A7jX41hZ.jpg"),
+    ("Gone Girl", 2014, 149, "With his wife's disappearance having become the focus of an intense media circus, a man sees the spotlight turned on him when it's suspected that he may not be innocent.", "English", 8.1, ["Drama", "Mystery", "Thriller"], "https://image.tmdb.org/t/p/w500/qymaJhucquUwjpKV8n7onQxZ7sp.jpg"),
+    ("Prisoners", 2013, 153, "When Keller Dover's daughter and her friend go missing, he takes matters into his own hands as the police pursue multiple leads.", "English", 8.2, ["Crime", "Drama", "Mystery"], "https://image.tmdb.org/t/p/w500/uhviyknTT52olbg5v3oZq7T7bU.jpg"),
+    ("Zodiac", 2007, 157, "Between 1968 and 1983, a San Francisco cartoonist becomes an amateur detective obsessed with tracking down the Zodiac Killer.", "English", 7.7, ["Crime", "Drama", "Mystery"], "https://image.tmdb.org/t/p/w500/6y0TNuq7WjN7i6P8y2J9Xp5yF6.jpg"),
+    ("Heat", 1995, 170, "A group of high-end professional thieves start to feel the heat from the LAPD when they unknowingly leave a clue at their latest heist.", "English", 8.3, ["Action", "Crime", "Drama"], "https://image.tmdb.org/t/p/w500/umSRPtjKG8v1v88j32L7xK6Wp9.jpg"),
+    ("Scarface", 1983, 170, "In 1980 Miami, a determined Cuban immigrant takes over a drug cartel and succumbs to greed.", "English", 8.3, ["Crime", "Drama"], "https://image.tmdb.org/t/p/w500/iQ5z9T9X7L9W9Kj7xQ5z9T9X7L.jpg"),
+    ("Taxi Driver", 1976, 114, "A mentally unstable veteran works as a nighttime taxi driver in New York City, where the perceived decadence fuels his urge for violent action.", "English", 8.2, ["Crime", "Drama"], "https://image.tmdb.org/t/p/w500/ekstpH69PgWZfl9uzYe5iesxQNJ.jpg"),
+    ("Good Will Hunting", 1997, 126, "Will Hunting, a janitor at M.I.T., has a gift for mathematics, but needs help from a psychologist to find direction in his life.", "English", 8.3, ["Drama", "Romance"], "https://image.tmdb.org/t/p/w500/bABCBKYBK7A7Naek085278788.jpg"),
+    ("A Beautiful Mind", 2001, 135, "After John Nash, a brilliant mathematician, accepts secret work in cryptography, his life takes a turn for the nightmarish.", "English", 8.2, ["Biography", "Drama"], "https://image.tmdb.org/t/p/w500/zwzWCmH72OSC9NA0ipoqw5Zjya8.jpg"),
+    ("Dead Poets Society", 1989, 128, "Maverick teacher John Keating uses poetry to embolden his boarding school students to new heights of self-expression.", "English", 8.1, ["Comedy", "Drama"], "https://image.tmdb.org/t/p/w500/ai40pmv0k788.jpg")
 ]
 
 FIRST_NAMES = [
@@ -154,16 +170,15 @@ def generate_full_dataset(target_dir: Path):
     random.seed(42)
     target_dir.mkdir(parents=True, exist_ok=True)
 
-    # 1. Generate Movies
+    # 1. Generate Movies from Curated Genuine Blockbusters
+    try:
+        from database.real_movies_list import REAL_225_MOVIES
+    except ImportError:
+        from real_movies_list import REAL_225_MOVIES
+
     movies_data = []
-    all_raw_movies = CURATED_MOVIES + ADDITIONAL_TEMPLATES
-
-    # Extend dataset to 220+ movies by synthesizing realistic titles in franchise / cinematic universes
-    franchise_suffixes = ["Chapter 2", "Origins", "Legacy", "Resurrection", "Retribution", "Final Battle", "Reckoning"]
-    genres_pool = ["Action", "Adventure", "Animation", "Biography", "Comedy", "Crime", "Drama", "Family", "Fantasy", "History", "Horror", "Music", "Mystery", "Romance", "Sci-Fi", "Thriller", "War"]
-
     movie_id_counter = 1
-    for title, yr, dur, desc, lang, imdb, g_list, poster in all_raw_movies:
+    for title, yr, dur, desc, lang, imdb, g_list, poster in REAL_225_MOVIES:
         movies_data.append({
             "movie_id": movie_id_counter,
             "title": title,
@@ -174,27 +189,6 @@ def generate_full_dataset(target_dir: Path):
             "imdb_rating": imdb,
             "genres": "|".join(g_list),
             "poster_url": poster
-        })
-        movie_id_counter += 1
-
-    # Add realistic variations until reaching 220 movies
-    base_titles = [m[0] for m in all_raw_movies]
-    for i in range(len(movies_data), 225):
-        base_movie = all_raw_movies[i % len(all_raw_movies)]
-        suffix = franchise_suffixes[i % len(franchise_suffixes)]
-        new_title = f"{base_movie[0]}: {suffix}"
-        new_year = min(2025, base_movie[1] + (i % 8) + 1)
-        new_rating = round(max(5.5, min(9.1, base_movie[5] + random.uniform(-0.8, 0.4))), 1)
-        movies_data.append({
-            "movie_id": movie_id_counter,
-            "title": new_title,
-            "release_year": new_year,
-            "duration": base_movie[2] + random.randint(-15, 20),
-            "description": f"The continuing saga of {base_movie[0]}. " + base_movie[3][:120] + "...",
-            "language": base_movie[4],
-            "imdb_rating": new_rating,
-            "genres": "|".join(base_movie[6]),
-            "poster_url": base_movie[7]
         })
         movie_id_counter += 1
 

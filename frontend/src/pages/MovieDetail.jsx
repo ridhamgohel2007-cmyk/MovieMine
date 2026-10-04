@@ -7,11 +7,13 @@ const MovieDetail = ({ movie, onBack, onSelectMovie, onRateMovie }) => {
   const [details, setDetails] = useState(movie);
   const [similarMovies, setSimilarMovies] = useState([]);
   const [loadingSimilar, setLoadingSimilar] = useState(false);
+  const [imgError, setImgError] = useState(false);
 
   useEffect(() => {
     if (movie?.movie_id) {
       loadMovieDetails(movie.movie_id);
       loadSimilarMovies(movie.movie_id);
+      setImgError(false);
     }
   }, [movie?.movie_id]);
 
@@ -53,9 +55,10 @@ const MovieDetail = ({ movie, onBack, onSelectMovie, onRateMovie }) => {
         {/* Bold Large Poster */}
         <div className="w-52 sm:w-64 shrink-0 aspect-[2/3] rounded-2xl overflow-hidden shadow-2xl border border-slate-700 bg-slate-950">
           <img
-            src={details.poster_url || 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80'}
+            src={(!imgError && details.poster_url) ? details.poster_url : 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?auto=format&fit=crop&w=600&q=80'}
             alt={details.title}
             className="w-full h-full object-cover"
+            onError={() => setImgError(true)}
           />
         </div>
 

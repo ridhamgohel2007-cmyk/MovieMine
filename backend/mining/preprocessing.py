@@ -37,6 +37,7 @@ def get_movies_dataframe(db: Session) -> pd.DataFrame:
             "description": m.description or "",
             "language": m.language or "English",
             "imdb_rating": float(m.imdb_rating or 0.0),
+            "poster_url": m.poster_url or "",
             "genres": genres,
             "genre_str": " ".join(genres)
         })
