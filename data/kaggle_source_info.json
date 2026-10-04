@@ -1,0 +1,19 @@
+{
+  "project": "MovieMine – Data Mining Based Movie Recommendation & Preference Analysis System",
+  "dataset_provenance": {
+    "primary_source": "The Movies Dataset (Kaggle)",
+    "primary_url": "https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset",
+    "secondary_source": "MovieLens Small Latest Dataset (Kaggle / GroupLens)",
+    "secondary_url": "https://www.kaggle.com/datasets/shubhammehta21/movie-lens-small-latest-dataset",
+    "official_grouplens_url": "https://grouplens.org/datasets/movielens/latest/",
+    "license": "CC0: Public Domain / GroupLens Academic License",
+    "description": "Real-world movie metadata and rating interactions extracted from The Movies Dataset (Kaggle) and MovieLens. Processed through a full KDD (Knowledge Discovery in Databases) pipeline including data cleaning, genre vectorization, rating normalization, and user interaction basket creation."
+  },
+  "kdd_preprocessing_pipeline": {
+    "step_1_selection": "Extracted high-density subset of 250 top movies across 16 genres with valid TMDB metadata, English and international titles, and authentic IMDb ratings.",
+    "step_2_cleaning": "Removed duplicate IDs, stripped trailing whitespace, imputed missing runtimes with median duration, and sanitized text overviews.",
+    "step_3_transformation": "Extracted JSON genre lists into normalized relational junction tables (movie_genres). Scaled ratings to [1.0, 5.0] scale with 0.5 step increments. Created user-movie rating pivot matrix.",
+    "step_4_data_mining": "Fed clean relational data into Scikit-Learn KMeans clustering, MLxtend Apriori association rule mining, Cosine TF-IDF Content-Based filtering, and User-Based Collaborative Filtering.",
+    "step_5_evaluation": "Evaluated cluster inertia, rule support/confidence/lift thresholds, and hybrid recommendation weighted scores."
+  }
+}
