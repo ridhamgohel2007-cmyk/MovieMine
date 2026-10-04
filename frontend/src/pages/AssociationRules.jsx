@@ -55,16 +55,6 @@ const AssociationRules = () => {
         </button>
       </div>
 
-      {/* 30-Second Viva Explanation */}
-      <div className="p-4 rounded-2xl bg-emerald-950/40 border border-emerald-500/30 text-xs text-emerald-200 space-y-1">
-        <span className="font-bold text-white uppercase text-[10px] bg-emerald-500/30 px-2 py-0.5 rounded mr-2">
-          How to explain this in Viva in 30 seconds:
-        </span>
-        <p className="pt-1">
-          "Sir/Ma'am, we applied the Apriori algorithm on user watch histories. Just like supermarket market-basket analysis finds bread + butter, our system discovers which movies co-occur frequently. We measure Support (popularity), Confidence (predictive probability), and Lift (strength over random chance)."
-        </p>
-      </div>
-
       {/* 3 Metric Explanations */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="p-4 rounded-2xl bg-slate-900/90 border border-slate-800 text-xs space-y-1">

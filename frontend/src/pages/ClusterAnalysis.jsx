@@ -69,16 +69,6 @@ const ClusterAnalysis = () => {
         </div>
       </div>
 
-      {/* 1-Minute Viva Explanation Box */}
-      <div className="p-4 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 text-xs text-indigo-200 space-y-1">
-        <span className="font-bold text-white uppercase text-[10px] bg-indigo-500/30 px-2 py-0.5 rounded mr-2">
-          How to explain this in Viva in 30 seconds:
-        </span>
-        <p className="pt-1">
-          "Sir/Ma'am, in this module we take each user's rating vector across 18 genres. We apply the K-Means algorithm to partition 120 users into {k} clusters without any manual labeling. The algorithm automatically calculated which genres each cluster prefers and named them dynamically from the database centroids."
-        </p>
-      </div>
-
       {/* 4 Big Cool Cluster Persona Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {(result?.clusters || []).map((c, idx) => (
