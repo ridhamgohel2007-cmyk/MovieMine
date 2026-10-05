@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { miningApi } from '../services/api';
 import { Layers, Play, Users, Star, Film, Sparkles, Tag } from 'lucide-react';
 import { 
-  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell 
+  BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid, Cell, LabelList 
 } from 'recharts';
 
 const ClusterAnalysis = () => {
@@ -191,28 +191,157 @@ const ClusterAnalysis = () => {
         })}
       </div>
 
-      {/* Cluster Distribution Bar Chart */}
-      <div className="bg-slate-900/90 p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-xl space-y-4">
-        <h3 className="text-sm font-bold text-white flex items-center gap-2">
-          <Users className="w-4 h-4 text-indigo-400" /> User Distribution Across Roles
-        </h3>
-        <div className="h-64 w-full">
+      {/* Cluster Distribution Section */}
+      <div className="bg-slate-900/95 p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-2xl space-y-6">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-2 border-b border-slate-800/80">
+          <div>
+            <h3 className="text-base font-bold text-white flex items-center gap-2">
+              <Users className="w-5 h-5 text-indigo-400" /> User Distribution Across Roles
+            </h3>
+            <p className="text-xs text-slate-400 mt-1">
+              Quantitative breakdown of user allocations, audience percentages, and behavioral sizes per discovered archetype.
+            </p>
+          </div>
+          <div className="flex items-center gap-2 bg-slate-800/80 px-4 py-2 rounded-2xl border border-slate-700/80 self-start sm:self-auto">
+            <span className="text-xs text-slate-400 font-medium">Total Audience:</span>
+            <span className="text-sm font-black text-indigo-300">
+              {clustersList.reduce((acc, c) => acc + (c.user_count || 0), 0)} Users
+            </span>
+          </div>
+        </div>
+
+        {/* Visual Segmented Proportional Bar */}
+        <div className="space-y-2">
+          <div className="flex items-center justify-between text-[11px] text-slate-400 font-semibold px-1">
+            <span>Audience Share Proportion</span>
+            <span>100% Coverage</span>
+          </div>
+          <div className="w-full h-3 rounded-full overflow-hidden flex bg-slate-950 p-0.5 border border-slate-800">
+            {clustersList.map((c, idx) => {
+              const total = clustersList.reduce((acc, item) => acc + (item.user_count || 0), 0) || 1;
+              const pct = c.percentage || Math.round(((c.user_count || 0) / total) * 100);
+              return (
+                <div
+                  key={idx}
+                  style={{
+                    width: `${pct}%`,
+                    backgroundColor: CLUSTER_COLORS[idx % CLUSTER_COLORS.length]
+                  }}
+                  className="h-full transition-all first:rounded-l-full last:rounded-r-full"
+                  title={`${c.role_badge || c.cluster_name}: ${pct}%`}
+                />
+              );
+            })}
+          </div>
+        </div>
+
+        {/* High-Legibility Horizontal Bar Chart */}
+        <div className="h-80 w-full pt-2">
           <ResponsiveContainer width="100%" height="100%">
-            <BarChart data={clustersList} margin={{ top: 10, right: 10, left: -20, bottom: 20 }}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-              <XAxis dataKey="cluster_name" stroke="#94a3b8" fontSize={11} interval={0} />
-              <YAxis stroke="#94a3b8" fontSize={11} unit=" users" />
-              <Tooltip
-                contentStyle={{ backgroundColor: '#0f172a', borderColor: '#334155', borderRadius: '12px', fontSize: '12px' }}
-                formatter={(val) => [`${val} Users`, 'Audience Size']}
+            <BarChart
+              layout="vertical"
+              data={clustersList.map((c, idx) => {
+                const total = clustersList.reduce((acc, item) => acc + (item.user_count || 0), 0) || 1;
+                const pct = c.percentage || Math.round(((c.user_count || 0) / total) * 100);
+                return {
+                  ...c,
+                  displayLabel: `${c.role_icon || '🎬'} ${c.role_badge || c.cluster_name}`,
+                  formattedCount: `${c.user_count} Users (${pct}%)`,
+                  pctValue: pct
+                };
+              })}
+              margin={{ top: 10, right: 120, left: 20, bottom: 10 }}
+            >
+              <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" horizontal={false} />
+              <XAxis
+                type="number"
+                stroke="#94a3b8"
+                fontSize={12}
+                tickLine={false}
+                axisLine={{ stroke: '#334155' }}
+                unit=" users"
               />
-              <Bar dataKey="user_count" radius={[6, 6, 0, 0]}>
+              <YAxis
+                type="category"
+                dataKey="displayLabel"
+                stroke="#f1f5f9"
+                fontSize={13}
+                fontWeight={700}
+                tickLine={false}
+                axisLine={{ stroke: '#334155' }}
+                width={190}
+              />
+              <Tooltip
+                contentStyle={{
+                  backgroundColor: '#0f172a',
+                  borderColor: '#334155',
+                  borderRadius: '12px',
+                  boxShadow: '0 10px 25px -5px rgba(0,0,0,0.5)',
+                  fontSize: '13px'
+                }}
+                formatter={(val, name, item) => [
+                  `${val} Users (${item.payload.pctValue}% of total)`,
+                  item.payload.cluster_name
+                ]}
+              />
+              <Bar dataKey="user_count" radius={[0, 8, 8, 0]} barSize={26}>
                 {clustersList.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={CLUSTER_COLORS[index % CLUSTER_COLORS.length]} />
                 ))}
+                <LabelList
+                  dataKey="formattedCount"
+                  position="right"
+                  fill="#f8fafc"
+                  fontSize={12}
+                  fontWeight={800}
+                  offset={10}
+                />
               </Bar>
             </BarChart>
           </ResponsiveContainer>
+        </div>
+
+        {/* Clear Summary Role Breakdown Cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-4 border-t border-slate-800/80">
+          {clustersList.map((c, idx) => {
+            const total = clustersList.reduce((acc, item) => acc + (item.user_count || 0), 0) || 1;
+            const pct = c.percentage || Math.round(((c.user_count || 0) / total) * 100);
+            const color = CLUSTER_COLORS[idx % CLUSTER_COLORS.length];
+            return (
+              <div
+                key={c.cluster_id || idx}
+                className="bg-slate-950/70 border border-slate-800/90 rounded-2xl p-4 flex flex-col justify-between hover:border-slate-700 transition-colors"
+              >
+                <div>
+                  <div className="flex items-center justify-between mb-2">
+                    <span className="text-xl">{c.role_icon || '🎬'}</span>
+                    <span
+                      className="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full"
+                      style={{ backgroundColor: `${color}20`, color: color, borderColor: `${color}40`, borderWidth: 1 }}
+                    >
+                      {pct}% Share
+                    </span>
+                  </div>
+                  <h4 className="text-xs font-bold text-white line-clamp-1" title={c.cluster_name}>
+                    {c.role_badge || c.cluster_name}
+                  </h4>
+                  <div className="mt-2 flex items-baseline gap-1.5">
+                    <span className="text-2xl font-black text-white">{c.user_count}</span>
+                    <span className="text-xs text-slate-400 font-semibold">active users</span>
+                  </div>
+                </div>
+
+                <div className="mt-3 pt-2.5 border-t border-slate-900 flex items-center justify-between text-[11px] text-slate-400">
+                  <span className="text-amber-400 font-bold flex items-center gap-1">
+                    ★ {c.avg_rating || '4.8'}
+                  </span>
+                  <span className="text-slate-400 truncate max-w-[120px]" title={c.dominant_genres?.join(', ')}>
+                    {c.dominant_genres?.[0] || 'Curated'}
+                  </span>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </div>
