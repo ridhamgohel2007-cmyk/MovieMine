@@ -74,27 +74,6 @@ const Navbar = ({ activeTab, setActiveTab }) => {
       {/* Top Luminous Ambient Accent Strip */}
       <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-indigo-500 via-purple-500 to-transparent opacity-80" />
 
-      {/* Mini Academic & Institutional Banner */}
-      <div className="bg-slate-950/90 border-b border-slate-800/50 py-1 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-[11px] text-slate-400">
-          <div className="flex items-center gap-2 truncate">
-            <span className="flex h-2 w-2 relative">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="font-semibold text-slate-300">VGEC Chandkheda</span>
-            <span className="text-slate-600">•</span>
-            <span className="hidden md:inline">Data Mining Techniques (BE05000181)</span>
-          </div>
-
-          <div className="flex items-center gap-2 shrink-0">
-            <span className="text-slate-400 font-medium">Student:</span>
-            <span className="font-bold text-transparent bg-clip-text bg-gradient-to-r from-indigo-300 to-cyan-300">
-              Gohel Ridham Manojkumar (240170107121)
-            </span>
-          </div>
-        </div>
-      </div>
 
       {/* Main Navigation Bar */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
