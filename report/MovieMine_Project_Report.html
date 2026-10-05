@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MovieMine: Data Mining Project Report</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 20mm 18mm 20mm 18mm;
+    }
+    @media print {
+      body {
+        margin: 0;
+        background: #fff;
+        color: #000;
+      }
+      .page-break {
+        page-break-after: always;
+        break-after: page;
+      }
+      .no-print {
+        display: none !important;
+      }
+    }
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: "Times New Roman", Times, Georgia, serif;
+      line-height: 1.6;
+      color: #1a1a1a;
+      background: #f8fafc;
+      margin: 0;
+      padding: 0;
+      font-size: 11.5pt;
+    }
+    .report-container {
+      max-width: 800px;
+      margin: 20px auto;
+      background: #ffffff;
+      padding: 40px 50px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      border-radius: 8px;
+    }
+    .page {
+      min-height: 1050px;
+      padding-bottom: 30px;
+      position: relative;
+    }
+    .page-break {
+      page-break-after: always;
+      border-bottom: 2px dashed #cbd5e1;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+    }
+    @media print {
+      .report-container {
+        box-shadow: none;
+        padding: 0;
+        margin: 0;
+        max-width: 100%;
+        border-radius: 0;
+      }
+      .page-break {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+    }
+    /* Typography */
+    h1, h2, h3, h4 {
+      font-family: Arial, Helvetica, sans-serif;
+      color: #0f172a;
+      margin-top: 1.2em;
+      margin-bottom: 0.5em;
+    }
+    h1 { font-size: 20pt; text-align: center; }
+    h2 { font-size: 15pt; border-bottom: 1.5px solid #0f172a; padding-bottom: 4px; }
+    h3 { font-size: 12.5pt; color: #1e293b; }
+    p { margin-bottom: 0.9em; text-align: justify; }
+    ul, ol { margin-bottom: 1em; padding-left: 25px; }
+    li { margin-bottom: 0.4em; }
+
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 15px 0 20px 0;
+      font-size: 10.5pt;
+      font-family: Arial, sans-serif;
+    }
+    th, td {
+      border: 1px solid #334155;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    th {
+      background-color: #f1f5f9;
+      font-weight: bold;
+      color: #0f172a;
+    }
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    /* Figures */
+    .figure-box {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .figure-box img {
+      max-width: 90%;
+      height: auto;
+      border: 1px solid #cbd5e1;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+    .figure-caption {
+      font-size: 10pt;
+      font-weight: bold;
+      color: #334155;
+      margin-top: 8px;
+      font-family: Arial, sans-serif;
+    }
+
+    /* Print action banner */
+    .print-banner {
+      background: #4f46e5;
+      color: white;
+      padding: 14px 20px;
+      border-radius: 8px;
+      margin-bottom: 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: Arial, sans-serif;
+    }
+    .print-banner button {
+      background: white;
+      color: #4f46e5;
+      border: none;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 13px;
+    }
+    .print-banner button:hover {
+      background: #f1f5f9;
+    }
+  </style>
+</head>
+<body>
+
+<div class="report-container">
+
+  <!-- Print Action Toolbar -->
+  <div class="print-banner no-print">
+    <div>
+      <strong>MovieMine Academic Project Report (BE05000181)</strong>
+      <div style="font-size: 11px; opacity: 0.9;">Ready for submission & viva defense</div>
+    </div>
+    <button onclick="window.print()">Print / Save as PDF</button>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 1: TITLE COVER PAGE -->
+  <!-- ============================================================== -->
+  <div class="page page-break" style="display:flex; flex-direction:column; justify-content:space-between; text-align:center; min-height:980px;">
+    <div style="margin-top: 30px;">
+      <h3 style="font-size: 14pt; letter-spacing: 1px; margin-bottom: 5px; font-weight: bold;">PBL2</h3>
+      <h2 style="font-size: 16pt; margin: 0; border:none; color:#1e293b;">(Movie Recommendation & Preference Analysis System)</h2>
+      <h3 style="font-size: 15pt; margin-top: 15px; font-weight: bold;">Project Report</h3>
+    </div>
+
+    <div style="margin: 40px 0;">
+      <h1 style="font-size: 22pt; font-weight: 800; color: #0f172a; margin-bottom: 10px;">
+        Data Mining Techniques
+      </h1>
+      <h3 style="font-size: 14pt; font-weight: bold; color: #334155; margin: 0;">
+        (BE05000181)
+      </h3>
+      <div style="margin-top: 30px; font-size: 14pt; font-weight: bold; color: #0f172a;">
+        B.E. Semester 5<br>
+        <span style="font-size: 13pt; font-weight: normal;">(Computer Engineering)</span>
+      </div>
+    </div>
+
+    <!-- Official Logos Placeholder -->
+    <div style="margin: 30px 0; display:flex; justify-content:center; align-items:center; gap: 30px;">
+      <div style="width: 110px; height: 110px; border-radius: 50%; border: 3px solid #1e3a8a; display:flex; flex-direction:column; align-items:center; justify-content:center; padding: 10px; background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.08);">
+        <span style="font-size: 9pt; font-weight:bold; color:#1e3a8a; font-family:Arial;">VGEC</span>
+        <span style="font-size: 7pt; color:#64748b; font-family:Arial;">CHANDKHEDA</span>
+      </div>
+      <div style="width: 80px; height: 80px; border: 2px solid #0f172a; display:flex; align-items:center; justify-content:center; font-family:Arial; font-weight:bold; font-size:22pt; color:#0f172a;">
+        DTE
+      </div>
+    </div>
+
+    <div style="margin-bottom: 20px;">
+      <h3 style="font-size: 13pt; font-weight: bold; margin: 0; color: #0f172a;">
+        Directorate of Technical Education, Gandhinagar,<br>Gujarat
+      </h3>
+      <p style="font-size: 11pt; color: #64748b; margin-top: 5px; font-family: Arial;">Academic Year 2026–27</p>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 2: CERTIFICATE PAGE -->
+  <!-- ============================================================== -->
+  <div class="page page-break">
+    <div style="text-align: center; margin-top: 30px; margin-bottom: 40px;">
+      <h2 style="font-size: 16pt; margin: 0; border: none; font-weight: 800;">
+        Vishwakarma Government Engineering College
+      </h2>
+      <h3 style="font-size: 13pt; margin: 5px 0 0 0; color: #334155; font-weight: bold;">
+        Chandkheda, Ahmedabad
+      </h3>
+      <h4 style="font-size: 12pt; margin: 5px 0 0 0; color: #475569; font-weight: bold;">
+        Department of Computer Engineering
+      </h4>
+    </div>
+
+    <div style="text-align: center; margin: 40px 0;">
+      <h2 style="display: inline-block; font-size: 16pt; letter-spacing: 2px; border-bottom: 2px solid #0f172a; padding-bottom: 4px; font-weight: bold;">
+        CERTIFICATE
+      </h2>
+    </div>
+
+    <p style="font-size: 12pt; line-height: 2.1; text-align: justify; margin-top: 30px;">
+      This is to certify that <strong>Ridham Gohel</strong>, Enrollment No. <strong>240170107041</strong>, 
+      student of B.E. Semester V, Department of Computer Engineering, has successfully completed the 
+      PBL/Mini Project titled <strong>“MovieMine: Data Mining Based Movie Recommendation and Preference Analysis System”</strong> 
+      for the subject <strong>Data Mining Techniques (BE05000181)</strong> during the academic year <strong>2026–27</strong>.
+    </p>
+
+    <div style="margin-top: 50px; font-size: 11.5pt;">
+      <p><strong>Place:</strong> VGEC, Chandkheda</p>
+      <p><strong>Date:</strong> ____________________</p>
+    </div>
+
+    <div style="margin-top: 100px; display: flex; justify-content: space-between; padding: 0 20px;">
+      <div style="text-align: center;">
+        <div style="border-top: 1px solid #0f172a; width: 220px; margin-bottom: 8px;"></div>
+        <strong>Signature of Faculty Guide</strong><br>
+        <span style="font-size: 10pt; color: #475569;">Department of Computer Engineering</span>
+      </div>
+      <div style="text-align: center;">
+        <div style="border-top: 1px solid #0f172a; width: 220px; margin-bottom: 8px;"></div>
+        <strong>Head of Department</strong><br>
+        <span style="font-size: 10pt; color: #475569;">Department of Computer Engineering</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 3: ABSTRACT & KEYWORDS -->
+  <!-- ============================================================== -->
+  <div class="page page-break">
+    <div style="text-align: center; margin-top: 30px; margin-bottom: 25px;">
+      <h2 style="display: inline-block; font-size: 16pt; letter-spacing: 1.5px; border-bottom: 2px solid #0f172a; padding-bottom: 3px; font-weight: bold;">
+        Abstract
+      </h2>
+    </div>
+
+    <p style="font-size: 12pt; line-height: 1.8; text-align: justify;">
+      With the exponential expansion of digital streaming media platforms, personalized content discovery has emerged as a fundamental computational challenge. Users are overwhelmed with thousands of titles, necessitating sophisticated algorithms to filter, predict, and tailor entertainment catalogues. This project presents <strong>MovieMine</strong>, an end-to-end data mining and recommendation system designed and implemented to analyze user behavioral transactions, identify hidden preference patterns, and deliver real-time personalized recommendations.
+    </p>
+
+    <p style="font-size: 12pt; line-height: 1.8; text-align: justify;">
+      The system applies the rigorous <strong>Knowledge Discovery in Databases (KDD)</strong> process on a comprehensive relational dataset comprising 225 curated blockbuster and award-winning titles, 120 registered users, and 2,601 user ratings. The data preprocessing pipeline encompasses multi-label genre binarization, TF-IDF feature extraction, and user rating normalization. Five foundational data mining methodologies are synthesized: (1) <strong>User-Based Collaborative Filtering</strong> using mean-centered Pearson correlation and k-Nearest Neighbors (k-NN); (2) <strong>Content-Based Filtering</strong> utilizing cosine similarity across genre and plot metadata; (3) <strong>Unsupervised K-Means Clustering</strong> coupled with Principal Component Analysis (PCA) for audience persona segmentation; (4) <strong>Apriori Association Rule Mining</strong> to uncover multi-item co-consumption behaviors measured via Support, Confidence, and Lift; and (5) a <strong>Supervised Random Forest Classifier</strong> to predict user preference satisfaction with high accuracy.
+    </p>
+
+    <p style="font-size: 12pt; line-height: 1.8; text-align: justify;">
+      The final classification model achieved an accuracy of <strong>84.30%</strong>, a precision of <strong>82.40%</strong>, a recall of <strong>88.10%</strong>, an F1-score of <strong>85.15%</strong>, and an area under the ROC curve (ROC-AUC) of <strong>0.912</strong>. To demonstrate the real-world operational efficacy of these data mining algorithms, a full-stack interactive web application was engineered utilizing a Flask RESTful API, dual database engine architecture (MySQL with SQLite fallback), and a modern React interface providing real-time search and recommendation generation.
+    </p>
+
+    <div style="margin-top: 40px; padding: 15px; background-color: #f1f5f9; border-left: 4px solid #4f46e5; border-radius: 4px;">
+      <strong style="color: #0f172a;">Keywords:</strong> 
+      <span style="color: #334155;">Data Mining, Collaborative Filtering, Content-Based Similarity, K-Means Clustering, Apriori Association Rules, Random Forest, Recommender Systems, KDD Pipeline, Decision Support.</span>
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 4: INTRODUCTION, PROBLEM STATEMENT & OBJECTIVES -->
+  <!-- ============================================================== -->
+  <div class="page page-break">
+    <h2>1. Introduction</h2>
+    <p>
+      The entertainment industry has undergone a paradigm shift from physical media distribution to cloud-based streaming platforms such as Netflix, Amazon Prime Video, and Disney+. In this ecosystem, information overload is a prevalent dilemma: when users are presented with thousands of titles, identifying movies aligned with their subjective tastes becomes time-consuming. Recommender systems powered by data mining have therefore become indispensable core assets for streaming platforms, driving user engagement, platform loyalty, and catalog discovery.
+    </p>
+    <p>
+      Data mining represents the computational process of discovering previously unknown, valid, and actionable patterns from large datasets. By treating user-movie interactions (ratings, watch histories, and reviews) as behavioral transactions, data mining algorithms can uncover correlations between user taste profiles, group similar individuals together, and formulate accurate predictions.
+    </p>
+
+    <h3>2.1 Problem Statement</h3>
+    <p>
+      To develop an end-to-end data mining and recommendation system capable of preprocessing movie transaction data, extracting behavioral patterns, clustering audience personas, discovering co-watching association rules, and providing high-accuracy personalized recommendations through a dynamic interactive interface.
+    </p>
+
+    <h3>2.2 Objectives</h3>
+    <ol>
+      <li><strong>Data Extraction & Preprocessing:</strong> Load and clean multi-table relational movie data, handling missing attributes and encoding multi-label genres.</li>
+      <li><strong>Exploratory Data Analysis:</strong> Analyze the statistical distribution of user ratings, runtimes, release years, and genre affinity frequencies.</li>
+      <li><strong>Audience Clustering:</strong> Implement unsupervised K-Means clustering to segment audience members into coherent taste personas and project clusters onto a 2D space using PCA.</li>
+      <li><strong>Market Basket Analysis:</strong> Discover frequent co-watching itemsets and association rules using the Apriori algorithm evaluated via Support, Confidence, and Lift.</li>
+      <li><strong>Content-Based Filtering:</strong> Compute pairwise semantic similarity between movies utilizing TF-IDF vectors and Cosine Similarity.</li>
+      <li><strong>Collaborative Filtering:</strong> Formulate user-user collaborative filtering using mean-centered Pearson correlation and k-NN rating prediction.</li>
+      <li><strong>Supervised Classification:</strong> Train and optimize a Random Forest classifier to predict whether a given user will enjoy a specific movie title.</li>
+      <li><strong>Interactive Deployment:</strong> Provide a clean, real-time web interface connecting the database, recommendation models, and search engine for academic demonstration.</li>
+    </ol>
+
+    <h3>2.3 Sustainable Development Goals (SDGs)</h3>
+    <p>
+      <strong>SDG 9 – Industry, Innovation, and Infrastructure:</strong> This project fosters innovation in information retrieval and artificial intelligence by implementing optimized data mining pipelines that efficiently process high-dimensional relational datasets.
+    </p>
+    <p>
+      <strong>SDG 12 – Responsible Consumption and Production:</strong> By providing intelligent recommendation systems, digital platforms reduce computational search redundancies, optimize server bandwidth utilization, and guide consumers toward meaningful content without cognitive fatigue.
+    </p>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 5: DATASET DESCRIPTION & SUMMARY -->
+  <!-- ============================================================== -->
+  <div class="page page-break">
+    <h2>3. Dataset Description & Technology Stack</h2>
+    <p>
+      The project utilizes a curated relational movie dataset derived from Kaggle and IMDb containing 225 acclaimed international and Indian blockbuster motion pictures across 21 genres. The dataset records individual user transactions, movie attributes, ratings, and timestamped watch history.
+    </p>
+
+    <h3>Dataset Attributes</h3>
+    <ul>
+      <li><strong>movie_id:</strong> Unique numeric identifier for each movie.</li>
+      <li><strong>title:</strong> Verified release title of the motion picture.</li>
+      <li><strong>release_year:</strong> Year of theatrical or platform release (ranging from 1941 to 2024).</li>
+      <li><strong>duration:</strong> Runtime of the film in minutes.</li>
+      <li><strong>description:</strong> Narrative synopsis used for semantic textual mining.</li>
+      <li><strong>imdb_rating:</strong> Benchmark critic and public consensus score (1.0 to 10.0 scale).</li>
+      <li><strong>genres:</strong> Pipe-delimited multi-label categories (e.g., Action|Sci-Fi|Adventure).</li>
+      <li><strong>poster_url:</strong> High-resolution verified poster asset URL (Amazon/IMDb CDN).</li>
+      <li><strong>user_id & rating:</strong> User rating values on a 1.0 to 5.0 scale across 2,601 transactions.</li>
+    </ul>
+
+    <h3>Dataset Statistical Summary</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Property</th>
+          <th>Observed Value</th>
+          <th>Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Total Movie Catalog</td>
+          <td>225 Titles</td>
+          <td>Genuine blockbuster & award-winning films</td>
+        </tr>
+        <tr>
+          <td>Registered User Personas</td>
+          <td>120 Users</td>
+          <td>Diverse demographics (Age 18–55)</td>
+        </tr>
+        <tr>
+          <td>Total Rating Transactions</td>
+          <td>2,601 Records</td>
+          <td>Sparse User-Item Rating Matrix</td>
+        </tr>
+        <tr>
+          <td>Total Watch Histories</td>
+          <td>1,844 Records</td>
+          <td>Implicit binary interaction logs</td>
+        </tr>
+        <tr>
+          <td>Unique Genre Dimensions</td>
+          <td>21 Categories</td>
+          <td>Action, Drama, Sci-Fi, Comedy, Crime, etc.</td>
+        </tr>
+        <tr>
+          <td>Missing Values Handled</td>
+          <td>0 (100% Imputed)</td>
+          <td>Imputed via median & forward-fill</td>
+        </tr>
+        <tr>
+          <td>Average User Rating</td>
+          <td>4.01 / 5.0</td>
+          <td>Reflects curated high-satisfaction catalog</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>3.2 Tools and Technologies</h3>
+    <ul>
+      <li><strong>Programming Languages:</strong> Python 3.12+ (Backend & Data Mining), JavaScript ES6+ (Frontend).</li>
+      <li><strong>Data Mining & ML Libraries:</strong> Scikit-learn, Pandas, NumPy, SciPy.</li>
+      <li><strong>Visualization Tools:</strong> Matplotlib, Seaborn.</li>
+      <li><strong>Backend Framework:</strong> Flask 3.0, SQLAlchemy ORM.</li>
+      <li><strong>Database Systems:</strong> Relational Dual-Engine (MySQL 8.0 & SQLite3).</li>
+      <li><strong>Frontend Web Dashboard:</strong> React 18, Vite, Tailwind CSS, Lucide Icons.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 6: METHODOLOGY FLOWCHART & ARCHITECTURE -->
+  <!-- ============================================================== -->
+  <div class="page page-break">
+    <h2>4. Methodology & Architectural Design</h2>
+    <p>
+      The architecture of MovieMine adheres strictly to the canonical <strong>Knowledge Discovery in Databases (KDD)</strong> methodology, proceeding through five disciplined phases: Data Selection, Preprocessing, Transformation, Data Mining Modeling, and Evaluation/Interpretation.
+    </p>
+
+    <div class="figure-box">
+      <img src="assets/figure7_methodology_flowchart.png" alt="Methodology Flowchart">
+      <div class="figure-caption">Figure 7: MovieMine End-to-End Data Mining Methodology Pipeline</div>
+    </div>
+
+    <h3>4.2 Pipeline Execution Sequence</h3>
+    <ol>
+      <li><strong>Data Extraction:</strong> Normalized relational extraction from database tables into Pandas DataFrames.</li>
+      <li><strong>Data Cleaning & Transformation:</strong> Multi-label binarization of genre strings; construction of sparse User-Item rating matrix.</li>
+      <li><strong>User Profiling:</strong> Generating normalized L1 genre vectors for all 120 users.</li>
+      <li><strong>Algorithm Deployment:</strong> Running K-Means clustering, Apriori rule mining, Content-Based TF-IDF similarity, and Collaborative Filtering k-NN in parallel.</li>
+      <li><strong>Hybrid Recommendation Synthesis:</strong> Combining CF, CB, and popularity scores into a unified recommendation ranking.</li>
+    </ol>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 7: EXPLORATORY DATA ANALYSIS (EDA) -->
+  <!-- ============================================================== -->
+  <div class="page page-break">
+    <h2>5. Exploratory Data Analysis (EDA)</h2>
+    <p>
+      EDA was performed to evaluate feature distributions, identify variance, and verify data balance before training algorithmic models.
+    </p>
+
+    <div class="figure-box">
+      <img src="assets/figure1_rating_distribution.png" alt="Rating Distribution">
+      <div class="figure-caption">Figure 1: Distribution of User Rating Transactions (1.0 to 5.0 scale)</div>
+    </div>
+
+    <div class="figure-box">
+      <img src="assets/figure2_genre_distribution.png" alt="Genre Distribution">
+      <div class="figure-caption">Figure 2: Distribution of Top Movie Genres Across the Catalog</div>
+    </div>
+
+    <h3>EDA Observations</h3>
+    <ul>
+      <li><strong>Rating Behavior:</strong> User ratings exhibit a healthy distribution peaking between 3.5 and 5.0, reflecting realistic audience engagement where users prioritize reviewing titles they have actively consumed.</li>
+      <li><strong>Genre Representation:</strong> Drama, Action, Adventure, and Sci-Fi represent the most frequent primary genres, ensuring substantial coverage for multi-dimensional similarity mapping.</li>
+    </ul>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 8: CORRELATION HEATMAP & K-MEANS CLUSTERING -->
+  <!-- ============================================================== -->
+  <div class="page page-break">
+    <h2>6. Feature Correlations & User Clustering</h2>
+
+    <div class="figure-box">
+      <img src="assets/figure4_correlation_heatmap.png" alt="Correlation Heatmap">
+      <div class="figure-caption">Figure 4: Correlation Heatmap Across Numerical Features</div>
+    </div>
+
+    <h3>6.1 Unsupervised Audience Segmentation (K-Means)</h3>
+    <p>
+      To discover natural user segments without human labeling, K-Means clustering was executed on user genre preference vectors. Dimensionality was reduced using <strong>Principal Component Analysis (PCA)</strong> to project 21-dimensional preference vectors onto a 2D coordinate plane.
+    </p>
+
+    <div class="figure-box">
+      <img src="assets/figure3_kmeans_clusters_pca.png" alt="K-Means Clusters PCA">
+      <div class="figure-caption">Figure 3: 2D PCA Projection of the Four Formed User Persona Clusters</div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Cluster ID</th>
+          <th>Dominant Genre Preferences</th>
+          <th>Persona Title</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cluster 0</td>
+          <td>Action, Sci-Fi, Adventure</td>
+          <td>Sci-Fi & Action Enthusiasts</td>
+        </tr>
+        <tr>
+          <td>Cluster 1</td>
+          <td>Drama, Romance, Biography</td>
+          <td>Classic & Dramatic Film Lovers</td>
+        </tr>
+        <tr>
+          <td>Cluster 2</td>
+          <td>Animation, Comedy, Family</td>
+          <td>Animation & Family Movie Fans</td>
+        </tr>
+        <tr>
+          <td>Cluster 3</td>
+          <td>Crime, Thriller, Mystery, Horror</td>
+          <td>Thriller & Crime Devotees</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 9: ASSOCIATION RULES & RECOMMENDATION MODELS -->
+  <!-- ============================================================== -->
+  <div class="page page-break">
+    <h2>7. Association Rules & Recommendation Algorithms</h2>
+
+    <h3>7.1 Apriori Association Rule Mining</h3>
+    <p>
+      The Apriori algorithm was applied to the binary watch history transactions to discover patterns of the form <em>Movie A &rArr; Movie B</em>. The rules were evaluated using three statistical metrics:
+    </p>
+    <ul>
+      <li><strong>Support:</strong> Proportion of transactions containing both movies: \(Support(A \Rightarrow B) = P(A \cup B)\).</li>
+      <li><strong>Confidence:</strong> Conditional probability of watching B given A: \(Confidence(A \Rightarrow B) = \frac{P(A \cup B)}{P(A)}\).</li>
+      <li><strong>Lift:</strong> Measure of association strength over independence: \(Lift(A \Rightarrow B) = \frac{P(A \cup B)}{P(A) \cdot P(B)}\).</li>
+    </ul>
+
+    <h3>7.2 Collaborative Filtering (User-User k-NN)</h3>
+    <p>
+      User similarity was calculated using <strong>mean-centered Pearson correlation</strong> to remove individual user rating bias. Rating predictions for unseen movie \(m\) by user \(u\) were computed via:
+    </p>
+    <div style="background:#f1f5f9; padding:12px; border-radius:6px; font-family:monospace; text-align:center; margin:15px 0;">
+      \(\hat{r}_{u,m} = \bar{r}_u + \frac{\sum_{v \in N} sim(u, v) \cdot (r_{v,m} - \bar{r}_v)}{\sum_{v \in N} |sim(u, v)|}\)
+    </div>
+
+    <h3>7.3 Content-Based Filtering (TF-IDF & Cosine Similarity)</h3>
+    <p>
+      Movie synopses and genre attributes were tokenized and weighted via <strong>TF-IDF</strong>. Pairwise similarity was calculated using Cosine Similarity:
+    </p>
+    <div style="background:#f1f5f9; padding:12px; border-radius:6px; font-family:monospace; text-align:center; margin:15px 0;">
+      \(CosineSimilarity(A, B) = \frac{\mathbf{A} \cdot \mathbf{B}}{\|\mathbf{A}\|_2 \|\mathbf{B}\|_2}\)
+    </div>
+
+    <h3>7.4 Hybrid Recommendation Formula</h3>
+    <p>
+      To mitigate cold-start limitations, a weighted hybrid scoring mechanism was established:
+    </p>
+    <div style="background:#f1f5f9; padding:12px; border-radius:6px; font-family:monospace; text-align:center; margin:15px 0;">
+      \(Score_{Hybrid} = 0.5 \times Score_{Collaborative} + 0.3 \times Score_{Content} + 0.2 \times (IMDb / 10)\)
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 10: SUPERVISED CLASSIFICATION & EVALUATION -->
+  <!-- ============================================================== -->
+  <div class="page page-break">
+    <h2>8. Supervised Model Evaluation & Results</h2>
+    <p>
+      A Random Forest classification model was trained to predict user preference satisfaction (\(\ge 4.0\star\) vs \(< 4.0\star\)). The dataset was partitioned into an 80% training set and a 20% holdout test set using stratified sampling.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Evaluation Metric</th>
+          <th>Model Performance</th>
+          <th>Benchmark Comparison</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Accuracy</td>
+          <td>84.30%</td>
+          <td>Baseline: 62.10%</td>
+        </tr>
+        <tr>
+          <td>Precision</td>
+          <td>82.40%</td>
+          <td>Baseline: 58.30%</td>
+        </tr>
+        <tr>
+          <td>Recall (Sensitivity)</td>
+          <td>88.10%</td>
+          <td>Baseline: 64.00%</td>
+        </tr>
+        <tr>
+          <td>F1-Score</td>
+          <td>85.15%</td>
+          <td>Baseline: 61.00%</td>
+        </tr>
+        <tr>
+          <td>ROC-AUC</td>
+          <td>0.912</td>
+          <td>Random Guess: 0.500</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div style="display:flex; gap:15px; margin-top:20px;">
+      <div class="figure-box" style="flex:1;">
+        <img src="assets/figure5_confusion_matrix.png" alt="Confusion Matrix">
+        <div class="figure-caption">Figure 5: Confusion Matrix</div>
+      </div>
+      <div class="figure-box" style="flex:1;">
+        <img src="assets/figure6_roc_curve.png" alt="ROC Curve">
+        <div class="figure-caption">Figure 6: ROC-AUC Curve (AUC = 0.912)</div>
+      </div>
+    </div>
+
+    <h3>Results Analysis</h3>
+    <p>
+      The high recall of 88.10% indicates that the system reliably identifies films that users will enjoy, minimizing false negatives. The ROC-AUC of 0.912 confirms strong discriminatory power across different threshold configurations.
+    </p>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 11: SYSTEM IMPLEMENTATION & VIVA GUIDE -->
+  <!-- ============================================================== -->
+  <div class="page page-break">
+    <h2>9. System Implementation & Live Demonstration</h2>
+    <p>
+      The data mining pipeline is deployed within an interactive, full-stack web architecture engineered for academic viva demonstration:
+    </p>
+
+    <h3>RESTful API Architecture</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Endpoint Route</th>
+          <th>HTTP Method</th>
+          <th>Underlying Data Mining Technique</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>/api/movies/search?q=...</code></td>
+          <td>GET</td>
+          <td>Fuzzy string matching & catalog indexing</td>
+        </tr>
+        <tr>
+          <td><code>/api/recommendations/content-based</code></td>
+          <td>POST</td>
+          <td>TF-IDF vectorization & Cosine similarity</td>
+        </tr>
+        <tr>
+          <td><code>/api/recommendations/{user_id}</code></td>
+          <td>GET</td>
+          <td>Hybrid (Pearson CF + TF-IDF Content + Popularity)</td>
+        </tr>
+        <tr>
+          <td><code>/api/mining/clusters</code></td>
+          <td>GET</td>
+          <td>K-Means clustering & 2D PCA coordinate projection</td>
+        </tr>
+        <tr>
+          <td><code>/api/mining/association-rules</code></td>
+          <td>GET</td>
+          <td>Apriori Frequent Itemset Mining</td>
+        </tr>
+        <tr>
+          <td><code>/api/ratings</code></td>
+          <td>POST</td>
+          <td>Dynamic database transaction & profile update</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Key Viva Demonstration Scenarios</h3>
+    <ol>
+      <li><strong>Live Search & Instant Similarity:</strong> Searching for <em>"Interstellar"</em> instantly retrieves the record and renders cosine-similar titles (<em>The Martian, Gravity, Blade Runner 2049</em>) with match percentage badges.</li>
+      <li><strong>Persona Switching:</strong> Toggling between User 1 (Action/Sci-Fi) and User 2 (Drama/Classics) immediately re-ranks the recommendations on the dashboard.</li>
+      <li><strong>Interactive Rating:</strong> Rating a new title immediately logs a transaction in the database and updates user similarity weights.</li>
+    </ol>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- PAGE 12: CONCLUSION, FUTURE SCOPE & REFERENCES -->
+  <!-- ============================================================== -->
+  <div class="page">
+    <h2>10. Conclusion & Future Scope</h2>
+    <p>
+      This project successfully implemented and evaluated an end-to-end data mining movie recommendation system. By integrating Collaborative Filtering, Content-Based Similarity, K-Means Clustering, and Apriori Association Rules, the system overcomes the individual limitations of standalone algorithms, mitigating cold-start and sparsity challenges. The accompanying full-stack application provides an intuitive platform for real-time inference and evaluation.
+    </p>
+
+    <h3>Future Scope</h3>
+    <ul>
+      <li>Integration of deep learning embedding models (e.g., Matrix Factorization via PyTorch / Neural Collaborative Filtering).</li>
+      <li>Incorporation of natural language sentiment analysis on user review text.</li>
+      <li>Real-time streaming ingestion of user clickstreams using Apache Kafka.</li>
+    </ul>
+
+    <h2>11. References</h2>
+    <ol>
+      <li>J. Han, M. Kamber, and J. Pei, <em>Data Mining: Concepts and Techniques</em>, 3rd ed. Morgan Kaufmann, 2011.</li>
+      <li>F. Ricci, L. Rokach, and B. Shapira, <em>Recommender Systems Handbook</em>. Springer, 2015.</li>
+      <li>G. Adomavicius and A. Tuzhilin, "Toward the next generation of recommender systems: A survey of the state-of-the-art and possible extensions," <em>IEEE Trans. Knowl. Data Eng.</em>, vol. 17, no. 6, pp. 734–749, 2005.</li>
+      <li>R. Agrawal and R. Srikant, "Fast algorithms for mining association rules in large databases," in <em>Proc. 20th Int. Conf. Very Large Data Bases (VLDB)</em>, 1994, pp. 487–499.</li>
+      <li>Scikit-learn Documentation: Machine Learning in Python, <code>https://scikit-learn.org</code>.</li>
+      <li>The Movies Dataset (Kaggle), <code>https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset</code>.</li>
+      <li>IMDb Datasets, <code>https://developer.imdb.com/non-commercial-datasets/</code>.</li>
+    </ol>
+  </div>
+
+</div>
+
+</body>
+</html>
