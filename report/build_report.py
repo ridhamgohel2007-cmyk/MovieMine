@@ -23,6 +23,9 @@ demo_browse_b64 = get_base64_image(ASSETS_DIR / "demo_screenshot_browse.png")
 demo_clusters_b64 = get_base64_image(ASSETS_DIR / "demo_screenshot_clusters.png")
 demo_patterns_b64 = get_base64_image(ASSETS_DIR / "demo_screenshot_patterns.png")
 
+vgec_logo_b64 = get_base64_image(ASSETS_DIR / "vgec_logo.png")
+gtu_logo_b64 = get_base64_image(ASSETS_DIR / "gtu_logo.png")
+
 html_content = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -221,13 +224,7 @@ html_content = f"""<!DOCTYPE html>
       </div>
 
       <div style="margin: 12px 0;">
-        <!-- Clean SVG Emblem -->
-        <svg class="cover-logo" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="46" fill="#1e3a8a" stroke="#d97706" stroke-width="4"/>
-          <circle cx="50" cy="50" r="36" fill="#ffffff" stroke="#1e3a8a" stroke-width="2"/>
-          <path d="M50 20 L58 38 L78 38 L62 50 L68 70 L50 58 L32 70 L38 50 L22 38 L42 38 Z" fill="#d97706" />
-          <text x="50" y="86" font-size="7" font-weight="bold" fill="#ffffff" text-anchor="middle" font-family="Arial">VGEC CHANDKHEDA</text>
-        </svg>
+        <img src="{vgec_logo_b64}" style="max-height: 85px; max-width: 140px; object-fit: contain;" alt="VGEC Emblem">
       </div>
 
       <div class="cover-submission">
@@ -237,12 +234,7 @@ html_content = f"""<!DOCTYPE html>
       </div>
 
       <div style="margin: 10px 0;">
-        <svg style="width: 65px; height: 65px;" viewBox="0 0 100 100">
-          <circle cx="50" cy="50" r="44" fill="#991b1b" stroke="#f59e0b" stroke-width="3"/>
-          <circle cx="50" cy="50" r="34" fill="#ffffff" stroke="#991b1b" stroke-width="1.5"/>
-          <text x="50" y="44" font-size="11" font-weight="bold" fill="#991b1b" text-anchor="middle" font-family="Arial">GTU</text>
-          <text x="50" y="60" font-size="6" font-weight="bold" fill="#1e293b" text-anchor="middle" font-family="Arial">AHMEDABAD</text>
-        </svg>
+        <img src="{gtu_logo_b64}" style="max-height: 90px; max-width: 90px; object-fit: contain;" alt="GTU Logo">
       </div>
 
       <div style="font-size: 11pt; font-weight: bold; color: #111827;">Gujarat Technological University</div>
@@ -255,7 +247,7 @@ html_content = f"""<!DOCTYPE html>
 <!-- PAGE 2: ABSTRACT                                                         -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
   
   <div style="text-align: center; margin-bottom: 20px;">
     <h1 class="section-title" style="margin-bottom: 0;">ABSTRACT</h1>
@@ -285,7 +277,7 @@ html_content = f"""<!DOCTYPE html>
 <!-- PAGE 3: TABLE OF CONTENTS                                                -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <div style="text-align: center; margin-bottom: 25px;">
     <h1 class="section-title">TABLE OF CONTENTS</h1>
@@ -324,7 +316,7 @@ html_content = f"""<!DOCTYPE html>
 <!-- PAGE 4: 1. INTRODUCTION                                                  -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">1. INTRODUCTION</h1>
 
@@ -362,7 +354,7 @@ html_content = f"""<!DOCTYPE html>
 <!-- PAGE 5: 2. PROBLEM STATEMENT AND OBJECTIVES                              -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">2. PROBLEM STATEMENT AND OBJECTIVES</h1>
 
@@ -403,7 +395,7 @@ html_content = f"""<!DOCTYPE html>
 <!-- PAGE 6: 3. LITERATURE REVIEW AND EXISTING SYSTEM                         -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">3. LITERATURE REVIEW AND EXISTING SYSTEM</h1>
 
@@ -444,7 +436,7 @@ html_content = f"""<!DOCTYPE html>
 <!-- PAGE 7: 4. PROPOSED SYSTEM AND METHODOLOGY                               -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">4. PROPOSED SYSTEM AND METHODOLOGY</h1>
 
@@ -491,7 +483,7 @@ html_content = f"""<!DOCTYPE html>
 <!-- PAGE 8: 5. DATASET DESCRIPTION                                           -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">5. DATASET DESCRIPTION</h1>
 
@@ -549,7 +541,7 @@ html_content = f"""<!DOCTYPE html>
 <!-- PAGE 9: 5.3 SAMPLE RECORDS                                               -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h2 class="subsection-title">5.3 Sample Records</h2>
   <p>
@@ -595,7 +587,7 @@ html_content = f"""<!DOCTYPE html>
 <!-- PAGE 10: 6. TECHNOLOGIES AND TOOLS USED                                  -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">6. TECHNOLOGIES AND TOOLS USED</h1>
 
@@ -652,7 +644,7 @@ npm run dev</div>
 <!-- PAGE 11: 7. DATA MINING & RECOMMENDATION MODELS                         -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">7. DATA MINING & RECOMMENDATION MODELS</h1>
 
@@ -699,7 +691,7 @@ npm run dev</div>
 <!-- PAGE 12: 7.5 MODEL PERSISTENCE & ARCHITECTURE                            -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h2 class="subsection-title">7.5 Model Persistence & Engine Architecture</h2>
   <p>
@@ -735,7 +727,7 @@ npm run dev</div>
 <!-- PAGE 13: 8. SYSTEM DESIGN AND ARCHITECTURE                               -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">8. SYSTEM DESIGN AND ARCHITECTURE</h1>
 
@@ -790,7 +782,7 @@ npm run dev</div>
 <!-- PAGE 14: 9. IMPLEMENTATION                                                -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">9. IMPLEMENTATION</h1>
 
@@ -831,7 +823,7 @@ const timer = setTimeout(async () => {{
 <!-- PAGE 15: 10. RESULTS AND EVALUATION                                      -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">10. RESULTS AND EVALUATION</h1>
 
@@ -887,7 +879,7 @@ const timer = setTimeout(async () => {{
 <!-- PAGE 16: FIGURES 10.1 & 10.2                                             -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <div class="figure-container">
     <img src="{fig10_1_b64}" class="figure-img" style="max-height: 290px;" alt="Model Evaluation Metrics">
@@ -906,7 +898,7 @@ const timer = setTimeout(async () => {{
 <!-- PAGE 17: FIGURES 10.3 & 10.4                                             -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <div class="figure-container">
     <img src="{fig10_3_b64}" class="figure-img" style="max-height: 245px;" alt="Rating Distribution">
@@ -930,7 +922,7 @@ const timer = setTimeout(async () => {{
 <!-- PAGE 18: 11. APPLICATION OUTPUT AND DISCUSSION                           -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">11. APPLICATION OUTPUT AND DISCUSSION</h1>
 
@@ -980,7 +972,7 @@ const timer = setTimeout(async () => {{
 <!-- PAGE 19: 12. LIMITATIONS AND FUTURE SCOPE                                -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">12. LIMITATIONS AND FUTURE SCOPE</h1>
 
@@ -1008,7 +1000,7 @@ const timer = setTimeout(async () => {{
 <!-- PAGE 20: 13. CONCLUSION                                                  -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">13. CONCLUSION</h1>
   <p>
@@ -1034,7 +1026,7 @@ const timer = setTimeout(async () => {{
 <!-- PAGE 21: APPENDIX                                                        -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <h1 class="section-title">APPENDIX</h1>
 
@@ -1076,7 +1068,7 @@ match_percentage = Math.min(Math.round(hybrid_score * 100), 100);</div>
 <!-- PAGE 22: APPENDIX C (CONTINUED) - LIVE DEMO SCREENSHOTS                   -->
 <!-- ========================================================================= -->
 <div class="page">
-  <div class="header-running">Movie Recommendation and Preference Mining System Using Data Mining Techniques</div>
+  <div class="header-running">Data Mining Techniques (BE05000181)</div>
 
   <div class="figure-container">
     <img src="{demo_clusters_b64}" class="figure-img" style="max-height: 310px;" alt="User Clusters Tab">
@@ -1109,6 +1101,7 @@ cmd = [
     chrome_path,
     "--headless=new",
     "--disable-gpu",
+    "--no-pdf-header-footer",
     "--run-all-compositor-stages-before-draw",
     f"--print-to-pdf={str(pdf_path.resolve())}",
     str(html_path.resolve())
