@@ -93,33 +93,25 @@ bg1.fill.solid()
 bg1.fill.fore_color.rgb = DARK_NAVY
 bg1.line.fill.background()
 
-# Logos
-vgec_path = os.path.join(ASSETS_DIR, 'vgec_logo.png')
-gtu_path = os.path.join(ASSETS_DIR, 'gtu_logo.png')
-if os.path.exists(vgec_path):
-    slide1.shapes.add_picture(vgec_path, Inches(1.0), Inches(0.8), height=Inches(1.2))
-if os.path.exists(gtu_path):
-    slide1.shapes.add_picture(gtu_path, Inches(11.1), Inches(0.8), height=Inches(1.2))
-
-# Institution text
-tx_inst = slide1.shapes.add_textbox(Inches(2.5), Inches(0.85), Inches(8.333), Inches(1.1))
+# Institution text (Full-Width, Centered, No Logos)
+tx_inst = slide1.shapes.add_textbox(Inches(0.6), Inches(0.75), Inches(12.133), Inches(1.2))
 tf_inst = tx_inst.text_frame
 tf_inst.word_wrap = True
 p = tf_inst.paragraphs[0]
 p.text = "VISHWAKARMA GOVERNMENT ENGINEERING COLLEGE, CHANDKHEDA"
-p.font.size = Pt(15)
+p.font.size = Pt(16)
 p.font.bold = True
 p.font.color.rgb = RGBColor(147, 197, 253)
 p.alignment = PP_ALIGN.CENTER
 
 p2 = tf_inst.add_paragraph()
 p2.text = "Department of Computer Engineering | Gujarat Technological University (GTU)"
-p2.font.size = Pt(12)
+p2.font.size = Pt(12.5)
 p2.font.color.rgb = RGBColor(226, 232, 240)
 p2.alignment = PP_ALIGN.CENTER
 
 # Title Card
-title_card = slide1.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(1.2), Inches(2.2), Inches(10.933), Inches(2.5))
+title_card = slide1.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(1.2), Inches(2.1), Inches(10.933), Inches(2.4))
 title_card.fill.solid()
 title_card.fill.fore_color.rgb = BLUE_PRIMARY
 title_card.line.color.rgb = BLUE_ACCENT
@@ -128,7 +120,7 @@ title_card.line.width = Pt(2)
 tf_tc = title_card.text_frame
 tf_tc.word_wrap = True
 p = tf_tc.paragraphs[0]
-p.text = "PBL TASK – 3 ACTIVITY PRESENTATION"
+p.text = "PBL TASK – 3 ACTIVITY PRESENTATION (INDIVIDUAL)"
 p.font.size = Pt(13)
 p.font.bold = True
 p.font.color.rgb = CYAN_ACCENT
@@ -147,8 +139,8 @@ p_sub.font.size = Pt(13)
 p_sub.font.color.rgb = RGBColor(203, 213, 225)
 p_sub.alignment = PP_ALIGN.CENTER
 
-# Student details card
-student_box = slide1.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(1.2), Inches(4.9), Inches(10.933), Inches(2.0))
+# Student details card (Individual)
+student_box = slide1.shapes.add_shape(MSO_SHAPE.ROUNDED_RECTANGLE, Inches(1.5), Inches(4.8), Inches(10.333), Inches(1.9))
 student_box.fill.solid()
 student_box.fill.fore_color.rgb = RGBColor(30, 41, 59)
 student_box.line.color.rgb = RGBColor(71, 85, 105)
@@ -157,28 +149,28 @@ tf_st = student_box.text_frame
 tf_st.word_wrap = True
 
 p_st_title = tf_st.paragraphs[0]
-p_st_title.text = "SUBMITTED BY:"
+p_st_title.text = "PREPARED & SUBMITTED BY:"
 p_st_title.font.size = Pt(11)
 p_st_title.font.bold = True
 p_st_title.font.color.rgb = CYAN_ACCENT
 p_st_title.alignment = PP_ALIGN.CENTER
 
 p_s1 = tf_st.add_paragraph()
-p_s1.text = "Gohel Ridham Manojkumar — Enrollment No.: 240170107121"
-p_s1.font.size = Pt(13)
+p_s1.text = "Gohel Ridham Manojkumar"
+p_s1.font.size = Pt(16)
 p_s1.font.bold = True
 p_s1.font.color.rgb = WHITE
 p_s1.alignment = PP_ALIGN.CENTER
 
-p_s2 = tf_st.add_paragraph()
-p_s2.text = "Prajapati Vaidik Shaileshbhai — Enrollment No.: 240170107116"
-p_s2.font.size = Pt(13)
-p_s2.font.bold = True
-p_s2.font.color.rgb = WHITE
-p_s2.alignment = PP_ALIGN.CENTER
+p_en = tf_st.add_paragraph()
+p_en.text = "Enrollment Number: 240170107121 | Department of Computer Engineering"
+p_en.font.size = Pt(12)
+p_en.font.bold = True
+p_en.font.color.rgb = RGBColor(147, 197, 253)
+p_en.alignment = PP_ALIGN.CENTER
 
 p_fac = tf_st.add_paragraph()
-p_fac.text = "Under the Guidance of: Prof. Niyati Shah | Subject: Data Mining Techniques (BE05000181) | Semester V (2026–27)"
+p_fac.text = "Under the Guidance of: Prof. Niyati Shah | Subject: Data Mining Techniques (BE05000181) | Sem V (2026–27)"
 p_fac.font.size = Pt(11)
 p_fac.font.color.rgb = RGBColor(148, 163, 184)
 p_fac.alignment = PP_ALIGN.CENTER

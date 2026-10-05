@@ -1,8 +1,10 @@
 """
 build_poster.py
-Generates the publication-grade Academic Poster in both HTML and PDF formats:
+Generates a clean, professional, publication-grade A3 Landscape Academic Poster:
 'Hyperparameter Tuning of Data Mining Models'
-PBL Activity Task - 3 | Subject: Data Mining Techniques (BE05000181)
+PBL Activity Task - 3 (Individual Submission)
+Student: Gohel Ridham Manojkumar (Enrollment No: 240170107121)
+Subject: Data Mining Techniques (BE05000181) - Semester V
 Vishwakarma Government Engineering College (VGEC), Chandkheda / GTU
 """
 
@@ -26,8 +28,6 @@ def image_to_base64(filepath):
         encoded = base64.b64encode(f.read()).decode('utf-8')
     return f"data:{mime};base64,{encoded}"
 
-vgec_logo_b64 = image_to_base64(os.path.join(ASSETS_DIR, 'vgec_logo.png'))
-gtu_logo_b64 = image_to_base64(os.path.join(ASSETS_DIR, 'gtu_logo.png'))
 search_strat_b64 = image_to_base64(os.path.join(ASSETS_DIR, 'search_strategies.png'))
 val_curve_b64 = image_to_base64(os.path.join(ASSETS_DIR, 'validation_curve_bias_variance.png'))
 kmeans_plot_b64 = image_to_base64(os.path.join(ASSETS_DIR, 'kmeans_elbow_silhouette.png'))
@@ -37,10 +37,10 @@ html_template = """<!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Hyperparameter Tuning of Data Mining Models - PBL 3 Academic Poster</title>
+<title>Hyperparameter Tuning of Data Mining Models - PBL 3 Academic Poster (A3)</title>
 <style>
   @page {
-    size: 1650px 1220px;
+    size: A3 landscape;
     margin: 0;
   }
   * {
@@ -49,56 +49,32 @@ html_template = """<!DOCTYPE html>
     padding: 0;
   }
   body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
     background-color: #0b1329;
     color: #1e293b;
-    width: 1650px;
-    height: 1220px;
+    width: 1587px;
+    height: 1122px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
-    padding: 14px 18px 10px 18px;
+    padding: 12px 16px 10px 16px;
   }
 
-  /* HEADER BANNER */
+  /* HEADER BANNER - CLEAN, MINIMALIST & LOGO-FREE */
   .poster-header {
     background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 50%, #172554 100%);
     border: 2px solid #3b82f6;
-    border-radius: 12px;
-    padding: 10px 22px 8px 22px;
-    color: #ffffff;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
-    margin-bottom: 10px;
-  }
-  .logo-box {
-    width: 95px;
-    height: 95px;
-    background: #ffffff;
     border-radius: 10px;
-    padding: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    flex-shrink: 0;
-  }
-  .logo-box img {
-    max-width: 85px;
-    max-height: 85px;
-    object-fit: contain;
-  }
-  .header-center {
+    padding: 10px 24px 8px 24px;
+    color: #ffffff;
+    box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.45);
+    margin-bottom: 9px;
     text-align: center;
-    flex-grow: 1;
-    padding: 0 18px;
   }
   .inst-name {
-    font-size: 13pt;
+    font-size: 13.5pt;
     font-weight: 800;
-    letter-spacing: 1.2px;
+    letter-spacing: 1.5px;
     color: #93c5fd;
     text-transform: uppercase;
     margin-bottom: 2px;
@@ -107,7 +83,7 @@ html_template = """<!DOCTYPE html>
     font-size: 9.5pt;
     font-weight: 600;
     color: #e2e8f0;
-    letter-spacing: 0.5px;
+    letter-spacing: 0.6px;
     margin-bottom: 4px;
   }
   .poster-title {
@@ -126,7 +102,7 @@ html_template = """<!DOCTYPE html>
     margin-bottom: 5px;
   }
   
-  /* METADATA BADGES BOX */
+  /* METADATA PILLS */
   .meta-container {
     display: flex;
     justify-content: center;
@@ -137,15 +113,19 @@ html_template = """<!DOCTYPE html>
   }
   .meta-pill {
     background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.28);
     backdrop-filter: blur(4px);
     border-radius: 6px;
-    padding: 3.5px 10px;
-    font-size: 8.8pt;
+    padding: 3.5px 12px;
+    font-size: 9pt;
     color: #f8fafc;
   }
   .meta-pill strong {
     color: #67e8f9;
+  }
+  .meta-pill.highlight {
+    background: rgba(14, 165, 233, 0.22);
+    border-color: #38bdf8;
   }
 
   /* MAIN GRID (3 COLUMNS) */
@@ -154,7 +134,7 @@ html_template = """<!DOCTYPE html>
     grid-template-columns: 1fr 1.05fr 1fr;
     gap: 10px;
     flex-grow: 1;
-    height: calc(1220px - 190px);
+    height: calc(1122px - 172px);
   }
   .column {
     display: flex;
@@ -168,7 +148,7 @@ html_template = """<!DOCTYPE html>
     background: #ffffff;
     border-radius: 8px;
     border: 1.5px solid #cbd5e1;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 3px 6px -1px rgba(0, 0, 0, 0.12);
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -176,8 +156,8 @@ html_template = """<!DOCTYPE html>
   .card-header {
     background: linear-gradient(90deg, #1e3a8a 0%, #2563eb 100%);
     color: #ffffff;
-    padding: 5px 10px;
-    font-size: 9.5pt;
+    padding: 4.5px 10px;
+    font-size: 9.2pt;
     font-weight: 800;
     letter-spacing: 0.5px;
     display: flex;
@@ -185,28 +165,28 @@ html_template = """<!DOCTYPE html>
     justify-content: space-between;
   }
   .card-header .badge {
-    background: rgba(255, 255, 255, 0.2);
-    font-size: 7.2pt;
-    padding: 2px 6px;
-    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.22);
+    font-size: 7pt;
+    padding: 1.5px 6px;
+    border-radius: 3px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
   .card-body {
-    padding: 7px 10px;
-    font-size: 8.3pt;
-    line-height: 1.32;
+    padding: 6.5px 9.5px;
+    font-size: 8.1pt;
+    line-height: 1.30;
     color: #334155;
     flex-grow: 1;
   }
 
   /* TYPOGRAPHY & ELEMENTS */
   h4 {
-    font-size: 8.6pt;
+    font-size: 8.4pt;
     font-weight: 800;
     color: #0f172a;
-    margin-top: 4px;
+    margin-top: 3px;
     margin-bottom: 2px;
     display: flex;
     align-items: center;
@@ -215,66 +195,66 @@ html_template = """<!DOCTYPE html>
   h4::before {
     content: "";
     display: inline-block;
-    width: 4px;
-    height: 9px;
+    width: 3.5px;
+    height: 8.5px;
     background: #2563eb;
     border-radius: 2px;
   }
   p {
-    margin-bottom: 4px;
+    margin-bottom: 3.5px;
   }
   ul, ol {
-    padding-left: 15px;
-    margin-bottom: 4px;
+    padding-left: 14px;
+    margin-bottom: 3.5px;
   }
   li {
-    margin-bottom: 2.5px;
+    margin-bottom: 2px;
   }
   .math-box {
     background: #f1f5f9;
     border-left: 3px solid #2563eb;
-    padding: 3.5px 7px;
+    padding: 3px 6px;
     font-family: "Courier New", Courier, monospace;
-    font-size: 7.8pt;
+    font-size: 7.5pt;
     font-weight: bold;
     color: #1e293b;
-    margin: 3px 0 5px 0;
+    margin: 2.5px 0 4.5px 0;
     border-radius: 0 4px 4px 0;
   }
   .plot-img {
     width: 100%;
-    max-height: 155px;
+    max-height: 140px;
     object-fit: contain;
-    border-radius: 5px;
+    border-radius: 4px;
     border: 1px solid #e2e8f0;
     display: block;
     margin: 2px auto;
   }
   .caption {
-    font-size: 7.2pt;
+    font-size: 7pt;
     color: #64748b;
     text-align: center;
     font-style: italic;
-    margin-bottom: 3px;
+    margin-bottom: 2.5px;
   }
 
   /* COMPACT TABLE */
   .mini-table {
     width: 100%;
     border-collapse: collapse;
-    font-size: 7.8pt;
-    margin: 4px 0;
+    font-size: 7.5pt;
+    margin: 3px 0;
   }
   .mini-table th {
     background: #1e293b;
     color: #ffffff;
-    padding: 4px 6px;
+    padding: 3.5px 5px;
     text-align: left;
     font-weight: 700;
-    font-size: 7.5pt;
+    font-size: 7.2pt;
   }
   .mini-table td {
-    padding: 3.5px 6px;
+    padding: 3px 5px;
     border-bottom: 1px solid #e2e8f0;
     color: #1e293b;
   }
@@ -285,7 +265,7 @@ html_template = """<!DOCTYPE html>
     color: #059669;
     font-weight: 800;
     background: #d1fae5;
-    padding: 1px 4px;
+    padding: 1px 3.5px;
     border-radius: 3px;
   }
 
@@ -293,11 +273,11 @@ html_template = """<!DOCTYPE html>
   .callout {
     background: #eff6ff;
     border: 1px solid #bfdbfe;
-    border-radius: 5px;
-    padding: 5px 8px;
-    font-size: 8pt;
+    border-radius: 4px;
+    padding: 4px 7px;
+    font-size: 7.6pt;
     color: #1e40af;
-    margin-top: 4px;
+    margin-top: 3px;
   }
   .callout strong {
     color: #1e3a8a;
@@ -310,11 +290,11 @@ html_template = """<!DOCTYPE html>
     border-radius: 6px;
     color: #94a3b8;
     padding: 4px 14px;
-    font-size: 7.8pt;
+    font-size: 7.6pt;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 8px;
+    margin-top: 7px;
   }
   .footer-left {
     font-weight: 600;
@@ -326,27 +306,17 @@ html_template = """<!DOCTYPE html>
 
 <!-- POSTER HEADER -->
 <div class="poster-header">
-  <div class="logo-box">
-    <img src="__VGEC_LOGO__" alt="VGEC Logo">
-  </div>
+  <div class="inst-name">Vishwakarma Government Engineering College, Chandkheda</div>
+  <div class="dept-sub">Department of Computer Engineering &bull; Gujarat Technological University (GTU)</div>
+  <div class="poster-title">HYPERPARAMETER TUNING OF DATA MINING MODELS</div>
+  <div class="poster-subtitle">Systematic Optimization of Algorithmic Hyperparameters for Predictive Accuracy & High-Dimensional Pattern Discovery</div>
   
-  <div class="header-center">
-    <div class="inst-name">Vishwakarma Government Engineering College, Chandkheda</div>
-    <div class="dept-sub">Department of Computer Engineering | Gujarat Technological University (GTU)</div>
-    <div class="poster-title">HYPERPARAMETER TUNING OF DATA MINING MODELS</div>
-    <div class="poster-subtitle">Systematic Optimization of Algorithmic Hyperparameters for Predictive Accuracy & High-Dimensional Pattern Discovery</div>
-    
-    <div class="meta-container">
-      <div class="meta-pill"><strong>Subject:</strong> Data Mining Techniques (BE05000181)</div>
-      <div class="meta-pill"><strong>PBL Task:</strong> 3 (Hyperparameter Tuning)</div>
-      <div class="meta-pill"><strong>Students:</strong> Gohel Ridham Manojkumar (240170107121) &bull; Prajapati Vaidik Shaileshbhai (240170107116)</div>
-      <div class="meta-pill"><strong>Faculty Guide:</strong> Prof. Niyati Shah</div>
-      <div class="meta-pill"><strong>Academic Year:</strong> 2026–27 | Sem V</div>
-    </div>
-  </div>
-
-  <div class="logo-box">
-    <img src="__GTU_LOGO__" alt="GTU Logo">
+  <div class="meta-container">
+    <div class="meta-pill highlight"><strong>Student:</strong> Gohel Ridham Manojkumar (Enrollment No: <strong>240170107121</strong>)</div>
+    <div class="meta-pill"><strong>Subject:</strong> Data Mining Techniques (BE05000181) &bull; Semester V</div>
+    <div class="meta-pill"><strong>Faculty Guide:</strong> Prof. Niyati Shah</div>
+    <div class="meta-pill"><strong>PBL Task:</strong> 3 (Individual Project)</div>
+    <div class="meta-pill"><strong>Academic Year:</strong> 2026–27</div>
   </div>
 </div>
 
@@ -356,7 +326,7 @@ html_template = """<!DOCTYPE html>
   <!-- ==================== COLUMN 1 ==================== -->
   <div class="column">
     
-    <!-- CARD 1: Abstract & Formal Problem -->
+    <!-- CARD 1: Fundamentals & Theory -->
     <div class="card" style="flex: 0 0 auto;">
       <div class="card-header">
         <span>1. FUNDAMENTALS & MATHEMATICAL FORMULATION</span>
@@ -387,18 +357,18 @@ html_template = """<!DOCTYPE html>
         <span class="badge">Algorithms</span>
       </div>
       <div class="card-body">
-        <ul style="padding-left: 14px;">
+        <ul style="padding-left: 13px;">
           <li>
-            <strong>Grid Search (Exhaustive):</strong> Evaluates the Cartesian product of predefined discrete candidate values. Computationally scales as <em>O(M<sup>d</sup>)</em> (curse of dimensionality); wastes computations on non-sensitive parameters.
+            <strong>Grid Search (Exhaustive):</strong> Evaluates the Cartesian product of predefined discrete values. Scales as <em>O(M<sup>d</sup>)</em> (curse of dimensionality); wastes compute on insensitive axes.
           </li>
           <li>
-            <strong>Random Search (Bergstra & Bengio):</strong> Samples trials uniformly at random from continuous or discrete distributions. Dramatically superior in practice because most ML models exhibit low <em>effective dimensionality</em> (only 1–2 parameters dominate performance).
+            <strong>Random Search (Bergstra & Bengio):</strong> Samples trials uniformly at random. Dramatically superior in practice because most ML models exhibit low <em>effective dimensionality</em> (only 1–2 parameters dominate performance).
           </li>
           <li>
-            <strong>Bayesian Optimization:</strong> Constructs a probabilistic surrogate model (Gaussian Process / Tree-structured Parzen Estimators) of the objective function and uses an Acquisition Function (Expected Improvement <em>EI(x)</em>) to balance exploration vs. exploitation.
+            <strong>Bayesian Optimization:</strong> Fits a probabilistic surrogate model (Gaussian Process / TPE) to historical trials, using an Acquisition Function (Expected Improvement <em>EI(x)</em>) to balance exploration vs. exploitation.
           </li>
           <li>
-            <strong>Successive Halving & Hyperband:</strong> Dynamically allocates resources (iterations/epochs) to promising configurations, pruning underperforming candidates early.
+            <strong>Successive Halving & Hyperband:</strong> Allocates dynamic early-stopping budgets; evaluates many configurations on small data subsets and doubles resources only for top performers.
           </li>
         </ul>
 
@@ -424,7 +394,7 @@ html_template = """<!DOCTYPE html>
         <p>
           Unlike supervised models with loss gradients, unsupervised mining models require specialized evaluation heuristics:
         </p>
-        <ul style="padding-left: 14px;">
+        <ul style="padding-left: 13px;">
           <li>
             <strong>K-Means Clustering:</strong> Tuning cluster count <em>k</em> via the <strong>Elbow Method</strong> (sum of squared errors SSE) and <strong>Silhouette Analysis</strong> (cluster cohesion vs separation). Initial centroid strategy (<code>init='k-means++'</code>) and <code>n_init</code> runs.
           </li>
@@ -439,8 +409,8 @@ html_template = """<!DOCTYPE html>
         <img src="__KMEANS_PLOT__" class="plot-img" alt="K-Means Elbow and Silhouette Curve">
         <div class="caption">Figure 2: K-Means Hyperparameter Tuning: Elbow SSE & Silhouette Score identifying optimal k=4.</div>
 
-        <h4 style="margin-top: 8px;">B. Supervised Classifiers & Ensemble Models</h4>
-        <ul style="padding-left: 14px;">
+        <h4 style="margin-top: 5px;">B. Supervised Classifiers & Ensemble Models</h4>
+        <ul style="padding-left: 13px;">
           <li>
             <strong>Support Vector Machines (SVM):</strong> Penalty parameter <em>C</em> (soft-margin slack trade-off) and RBF kernel width <em>&gamma;</em> (influence radius of support vectors).
           </li>
@@ -473,8 +443,8 @@ html_template = """<!DOCTYPE html>
         <img src="__VAL_CURVE__" class="plot-img" alt="Validation Curve Bias Variance">
         <div class="caption">Figure 4: Validation Curve diagnosing Underfitting (High Bias) vs Overfitting (High Variance).</div>
         
-        <p style="font-size: 8.2pt; margin-top: 3px;">
-          <strong>Diagnostic Principle:</strong> When model capacity is constrained (e.g., small <em>C</em>, low tree depth), both training and validation errors are high (<em>Underfitting</em>). As capacity increases, validation score reaches an optimum sweet spot (<em>&theta;*</em>) before diverging as the model memorizes training noise (<em>Overfitting</em>).
+        <p style="font-size: 7.8pt; margin-top: 2px;">
+          <strong>Diagnostic Principle:</strong> When model capacity is constrained (small <em>C</em>, low tree depth), training and validation errors are high (<em>Underfitting</em>). As capacity increases, validation score reaches an optimum sweet spot (<em>&theta;*</em>) before diverging as the model memorizes training noise (<em>Overfitting</em>).
         </p>
       </div>
     </div>
@@ -538,21 +508,21 @@ html_template = """<!DOCTYPE html>
       <div class="card-body" style="display: flex; flex-direction: column; justify-content: space-between;">
         <div>
           <h4>Production Toolkits</h4>
-          <p style="font-size: 8pt; margin-bottom: 4px;">
+          <p style="font-size: 7.7pt; margin-bottom: 3px;">
             <code>Scikit-learn</code> (GridSearchCV, RandomizedSearchCV, HalvingGridSearchCV), <code>Optuna</code> (Asynchronous TPE sampler), <code>Ray Tune</code> (Distributed HPC tuning).
           </p>
           
           <h4>Crucial Best Practices</h4>
-          <ol style="padding-left: 14px; font-size: 8pt;">
+          <ol style="padding-left: 13px; font-size: 7.7pt;">
             <li>Always execute hyperparameter search inside <strong>Nested Cross-Validation</strong> to prevent optimistic performance estimation.</li>
             <li>Prioritize <strong>Random Search</strong> or <strong>TPE/Bayesian Search</strong> over brute-force Grid Search for high-dimensional models (&gt;3 parameters).</li>
             <li>Transform search bounds to logarithmic scales for rates (e.g., learning rate &isin; [10<sup>-4</sup>, 10<sup>-1</sup>]).</li>
           </ol>
         </div>
 
-        <div style="border-top: 1px solid #e2e8f0; padding-top: 4px; margin-top: 4px;">
+        <div style="border-top: 1px solid #e2e8f0; padding-top: 3px; margin-top: 3px;">
           <h4 style="margin-top: 0;">Selected Academic References</h4>
-          <p style="font-size: 7.2pt; color: #64748b; line-height: 1.25; margin-bottom: 0;">
+          <p style="font-size: 7pt; color: #64748b; line-height: 1.25; margin-bottom: 0;">
             1. Bergstra, J., & Bengio, Y. (2012). <em>Random Search for Hyper-Parameter Optimization</em>. JMLR, 13, 281–305.<br>
             2. Snoek, J., Larochelle, H., & Adams, R. P. (2012). <em>Practical Bayesian Optimization of Machine Learning Algorithms</em>. NeurIPS.<br>
             3. Pedregosa, F., et al. (2011). <em>Scikit-learn: Machine Learning in Python</em>. JMLR, 12, 2825–2830.<br>
@@ -580,9 +550,7 @@ html_template = """<!DOCTYPE html>
 </html>
 """
 
-html_content = html_template.replace("__VGEC_LOGO__", vgec_logo_b64)
-html_content = html_content.replace("__GTU_LOGO__", gtu_logo_b64)
-html_content = html_content.replace("__SEARCH_STRAT__", search_strat_b64)
+html_content = html_template.replace("__SEARCH_STRAT__", search_strat_b64)
 html_content = html_content.replace("__VAL_CURVE__", val_curve_b64)
 html_content = html_content.replace("__KMEANS_PLOT__", kmeans_plot_b64)
 html_content = html_content.replace("__HEATMAP__", heatmap_b64)
@@ -617,7 +585,7 @@ if chrome_path:
     res = subprocess.run(cmd, capture_output=True, text=True)
     if res.returncode == 0:
         pdf_size = os.path.getsize(PDF_OUTPUT)
-        print(f"[SUCCESS] Compiled publication-grade PDF poster: {PDF_OUTPUT} ({pdf_size} bytes)")
+        print(f"[SUCCESS] Compiled publication-grade A3 PDF poster: {PDF_OUTPUT} ({pdf_size} bytes)")
     else:
         print(f"[ERROR] Chrome PDF compilation failed: {res.stderr}")
 else:
