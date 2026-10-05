@@ -13,6 +13,16 @@ const Navbar = ({ activeTab, setActiveTab }) => {
     { id: 'patterns', label: 'Movie Patterns', icon: Network },
   ];
 
+  const getRoleIcon = (clusterName) => {
+    if (!clusterName) return '🎬';
+    if (clusterName.includes('Sci-Fi') || clusterName.includes('Action')) return '🚀';
+    if (clusterName.includes('Drama') || clusterName.includes('Critic')) return '🎭';
+    if (clusterName.includes('Crime') || clusterName.includes('Mystery') || clusterName.includes('Sleuth')) return '🔍';
+    if (clusterName.includes('Animation') || clusterName.includes('Family')) return '🎨';
+    if (clusterName.includes('Romance')) return '💖';
+    return '🎬';
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-slate-950/95 backdrop-blur-md border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
@@ -68,21 +78,25 @@ const Navbar = ({ activeTab, setActiveTab }) => {
                 <div className="text-xs font-bold text-white leading-tight">
                   {currentUser?.name || 'User'}
                 </div>
-                <div className="text-[10px] font-semibold text-indigo-400">
-                  {currentUser?.cluster?.cluster_name || 'Audience Member'}
+                <div className="text-[10px] font-semibold text-indigo-400 flex items-center gap-1">
+                  <span>{getRoleIcon(currentUser?.cluster?.cluster_name)}</span>
+                  <span>{currentUser?.cluster?.cluster_name || 'Audience Member'}</span>
                 </div>
               </div>
               <ChevronDown className="w-3.5 h-3.5 text-slate-400" />
             </button>
 
             {dropdownOpen && (
-              <div className="absolute right-0 mt-2 w-64 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl p-2 z-50">
-                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1.5 mb-1">
-                  Switch Active Persona
+              <div className="absolute right-0 mt-2 w-72 rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl p-2 z-50">
+                <div className="text-[10px] font-bold text-slate-400 uppercase tracking-wider px-3 py-1.5 mb-1 flex items-center justify-between">
+                  <span>Switch User Role Persona</span>
+                  <span className="text-[9px] text-indigo-400 font-normal">Click to switch</span>
                 </div>
-                <div className="space-y-1 max-h-60 overflow-y-auto">
-                  {users.slice(0, 8).map((u) => {
+                <div className="space-y-1 max-h-64 overflow-y-auto">
+                  {users.slice(0, 12).map((u) => {
                     const isSelected = currentUser?.user_id === u.user_id;
+                    const uRole = u.cluster?.cluster_name || `User #${u.user_id}`;
+                    const uIcon = getRoleIcon(u.cluster?.cluster_name);
                     return (
                       <button
                         key={u.user_id}
@@ -96,11 +110,14 @@ const Navbar = ({ activeTab, setActiveTab }) => {
                             : 'text-slate-300 hover:bg-slate-800'
                         }`}
                       >
-                        <div>
-                          <div className="text-white font-medium">{u.name}</div>
-                          <div className="text-[10px] text-slate-400">{u.cluster?.cluster_name || `User #${u.user_id}`}</div>
+                        <div className="flex items-center gap-2">
+                          <span className="text-base">{uIcon}</span>
+                          <div>
+                            <div className="text-white font-medium">{u.name}</div>
+                            <div className="text-[10px] text-slate-400">{uRole}</div>
+                          </div>
                         </div>
-                        {isSelected && <Check className="w-3.5 h-3.5 text-indigo-400" />}
+                        {isSelected && <Check className="w-3.5 h-3.5 text-indigo-400 shrink-0" />}
                       </button>
                     );
                   })}

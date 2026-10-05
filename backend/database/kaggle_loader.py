@@ -197,9 +197,11 @@ def generate_full_dataset(target_dir: Path):
     # 2. Generate 120 Users with latent personas (for natural K-Means clustering and Apriori rules)
     # Personas:
     # 0: Action & Sci-Fi lover
-    # 1: Drama & Romance lover
-    # 2: Animation & Comedy fan
-    # 3: Thriller & Crime devotee
+    # 4 distinct roles / personas:
+    # 0: Sci-Fi & Action Pioneer (Action, Sci-Fi, Adventure)
+    # 1: Classic Drama & Cinephile Critic (Drama, Biography, History)
+    # 2: Animation & Family Adventure Fan (Animation, Comedy, Family)
+    # 3: Mystery & Crime Thriller Sleuth (Crime, Mystery, Thriller, Horror)
     users_data = []
     user_personas = {}
 
@@ -235,44 +237,64 @@ def generate_full_dataset(target_dir: Path):
     history_id = 1
     rating_id = 1
 
-    # Map movies by genre affinities
+    # Map distinct favorite genres and excluded genres per role
     persona_fav_genres = {
         0: ["Action", "Sci-Fi", "Adventure"],
-        1: ["Drama", "Romance", "Biography"],
+        1: ["Drama", "Biography", "History"],
         2: ["Animation", "Comedy", "Family"],
-        3: ["Crime", "Thriller", "Mystery", "Horror"]
+        3: ["Crime", "Mystery", "Thriller", "Horror"]
+    }
+
+    persona_excluded_genres = {
+        0: ["Animation", "Horror", "Romance"],
+        1: ["Sci-Fi", "Animation", "Horror", "Crime", "Thriller"],
+        2: ["Crime", "Horror", "Thriller", "War"],
+        3: ["Animation", "Family", "Musical", "Romance"]
     }
 
     for u_id in range(1, 121):
         persona = user_personas[u_id]
         fav_genres = persona_fav_genres[persona]
+        excluded = persona_excluded_genres[persona]
 
-        # Each user rates 14 to 28 movies
-        num_ratings = random.randint(14, 28)
+        # Each user rates 16 to 26 movies
+        num_ratings = random.randint(16, 26)
 
-        # 70% of ratings in favorite genres, 30% random
+        # Primary pool: contains role's favorite genres and none of the excluded ones
         fav_movie_pool = [
             m["movie_id"] for m in movies_data
             if any(g in m["genres"].split("|") for g in fav_genres)
+            and not any(g in m["genres"].split("|") for g in excluded)
         ]
+        # Fallback if fav pool is small
+        if len(fav_movie_pool) < 15:
+            fav_movie_pool = [
+                m["movie_id"] for m in movies_data
+                if any(g in m["genres"].split("|") for g in fav_genres)
+            ]
+
         other_movie_pool = [
             m["movie_id"] for m in movies_data
             if m["movie_id"] not in fav_movie_pool
         ]
 
-        fav_picks = random.sample(fav_movie_pool, min(len(fav_movie_pool), int(num_ratings * 0.75)))
-        other_picks = random.sample(other_movie_pool, min(len(other_movie_pool), num_ratings - len(fav_picks)))
+        # 85% of ratings in favorite genres, 15% in general pool
+        num_fav = min(len(fav_movie_pool), int(num_ratings * 0.85))
+        num_other = min(len(other_movie_pool), num_ratings - num_fav)
+
+        fav_picks = random.sample(fav_movie_pool, num_fav)
+        other_picks = random.sample(other_movie_pool, num_other)
         chosen_movies = fav_picks + other_picks
         random.shuffle(chosen_movies)
 
         for m_id in chosen_movies:
             is_fav = m_id in fav_movie_pool
             if is_fav:
-                # Highly positive rating for favorite genres (3.5 to 5.0)
-                r_val = random.choice([3.5, 4.0, 4.5, 5.0, 5.0])
+                # Enthusiastic rating for favorite genres (4.0 to 5.0)
+                r_val = random.choice([4.0, 4.5, 4.5, 5.0, 5.0])
             else:
-                # Moderate to mixed rating for other genres (1.5 to 3.5)
-                r_val = random.choice([1.5, 2.0, 2.5, 3.0, 3.5])
+                # Moderate/low rating for other genres (1.5 to 3.0)
+                r_val = random.choice([1.5, 2.0, 2.0, 2.5, 3.0])
 
             rating_date = datetime.datetime.utcnow() - datetime.timedelta(days=random.randint(1, 180))
             ratings_data.append({
