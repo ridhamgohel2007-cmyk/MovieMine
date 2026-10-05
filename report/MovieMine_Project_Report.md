@@ -60,6 +60,7 @@ The trained models and relational data are served through a Flask RESTful API an
 | 11. Application Output and Discussion | 18 |
 | 12. Limitations and Future Scope | 19 |
 | 13. Conclusion | 20 |
+| 14. References | 20 |
 | Appendix | 21 |
 
 ---
@@ -355,6 +356,18 @@ The **MovieMine** project successfully demonstrates a comprehensive, end-to-end 
 
 **Key Takeaway:** The main contribution of the project is the seamless end-to-end integration of the complete Data Mining lifecycle:
 **Raw Relational Data &rarr; Matrix Preprocessing &rarr; Unsupervised Clustering & Apriori Mining &rarr; Hybrid Filtering &rarr; Interactive Web Application**.
+
+---
+
+## 14. References
+
+1. **Project Source Code & Repository:** Gohel, R., & Prajapati, V. (2025). *MovieMine: Real-Time Movie Data Mining & Recommendation Engine*. GitHub Repository: [https://github.com/ridhamgohel2007-cmyk/MovieMine](https://github.com/ridhamgohel2007-cmyk/MovieMine)
+2. **Kaggle Dataset (Metadata & Credits):** Banik, R. (2017). *The Movies Dataset: Metadata on over 45,000 movies and 26 million ratings*. Kaggle: [https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset](https://www.kaggle.com/datasets/rounakbanik/the-movies-dataset)
+3. **Kaggle Benchmark Dataset:** GroupLens Research & Datta, P. (2018). *MovieLens 100k Benchmark Dataset*. Kaggle: [https://www.kaggle.com/datasets/prajitdatta/movielens-100k-dataset](https://www.kaggle.com/datasets/prajitdatta/movielens-100k-dataset)
+4. **Association Rule Mining:** Agrawal, R., & Srikant, R. (1994). *Fast Algorithms for Mining Association Rules in Large Databases*. Proceedings of the 20th International Conference on Very Large Data Bases (VLDB '94), pp. 487–499.
+5. **Collaborative Filtering:** Sarwar, B., Karypis, G., Konstan, J., & Riedl, J. (2001). *Item-based Collaborative Filtering Recommendation Algorithms*. Proceedings of the 10th International Conference on World Wide Web (WWW '01), pp. 285–295.
+6. **Data Mining Toolkit:** Pedregosa, F., Varoquaux, G., Gramfort, A., Michel, V., Thirion, B., Grisel, O., et al. (2011). *Scikit-learn: Machine Learning in Python*. Journal of Machine Learning Research (JMLR), 12, pp. 2825–2830.
+7. **Curriculum & Academic Syllabus:** Gujarat Technological University (GTU). *Data Mining Techniques (Course Code: BE05000181 / 3150713)*, Department of Computer Engineering, Vishwakarma Government Engineering College (VGEC), Chandkheda, Ahmedabad.
 
 ---
 
