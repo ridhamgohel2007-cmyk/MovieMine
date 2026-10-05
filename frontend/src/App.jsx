@@ -9,7 +9,16 @@ import AssociationRules from './pages/AssociationRules';
 import MovieDetail from './pages/MovieDetail';
 
 function AppContent() {
-  const [activeTab, setActiveTab] = useState('browse');
+  const getInitialTab = () => {
+    const params = new URLSearchParams(window.location.search);
+    const tabParam = params.get('tab');
+    if (tabParam) return tabParam;
+    const hash = window.location.hash.replace('#', '');
+    if (['browse', 'clusters', 'patterns'].includes(hash)) return hash;
+    return 'browse';
+  };
+
+  const [activeTab, setActiveTab] = useState(getInitialTab);
   const [selectedMovie, setSelectedMovie] = useState(null);
   const [ratingMovie, setRatingMovie] = useState(null);
   const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
