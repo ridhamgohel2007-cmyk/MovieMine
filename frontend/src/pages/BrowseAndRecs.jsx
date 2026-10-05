@@ -126,22 +126,25 @@ const BrowseAndRecs = ({ onSelectMovie, onRateMovie }) => {
   return (
     <div className="space-y-10 pb-16 text-left">
       {/* Top Search & Filter Bar */}
-      <div className="space-y-3 bg-slate-900/90 p-4 sm:p-5 rounded-3xl border border-slate-800 shadow-xl">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-4">
+      <div className="space-y-3.5 bg-slate-900/80 backdrop-blur-xl p-4 sm:p-5 rounded-3xl border border-slate-800/90 shadow-2xl relative overflow-hidden">
+        {/* Subtle decorative glow */}
+        <div className="absolute top-0 right-1/4 w-96 h-32 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none" />
+
+        <div className="flex flex-col md:flex-row items-center justify-between gap-4 relative z-10">
           {/* Search Input with Clear Button */}
-          <div className="relative w-full md:w-96">
-            <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+          <div className="relative w-full md:w-[420px]">
+            <Search className="w-4 h-4 text-indigo-400 absolute left-4 top-3.5" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search movie (e.g. Interstellar, Batman)..."
-              className="w-full pl-10 pr-10 py-2.5 rounded-2xl bg-slate-950 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 shadow-inner"
+              placeholder="Search movie title (e.g. Interstellar, Inception, Batman)..."
+              className="w-full pl-11 pr-11 py-2.5 rounded-2xl bg-slate-950/90 border border-slate-800 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/30 shadow-inner transition-all"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-3 text-slate-400 hover:text-white p-0.5 rounded-full hover:bg-slate-800 transition-colors"
+                className="absolute right-3.5 top-3 text-slate-400 hover:text-white p-0.5 rounded-full hover:bg-slate-800 transition-colors"
                 title="Clear Search"
               >
                 <X className="w-4 h-4" />
@@ -158,10 +161,10 @@ const BrowseAndRecs = ({ onSelectMovie, onRateMovie }) => {
                   setSelectedGenre(g);
                   if (searchQuery) setSearchQuery('');
                 }}
-                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold whitespace-nowrap transition-all duration-200 ${
                   selectedGenre === g && !searchQuery
-                    ? 'bg-indigo-600 text-white shadow-md shadow-indigo-600/30'
-                    : 'bg-slate-950 text-slate-400 hover:text-white border border-slate-800/80 hover:bg-slate-800'
+                    ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-lg shadow-indigo-600/30 border border-indigo-400/30'
+                    : 'bg-slate-950/80 text-slate-400 hover:text-white border border-slate-800/90 hover:bg-slate-800'
                 }`}
               >
                 {g}
@@ -171,15 +174,15 @@ const BrowseAndRecs = ({ onSelectMovie, onRateMovie }) => {
         </div>
 
         {/* Quick Suggestion Chips */}
-        <div className="flex items-center gap-2 pt-1 overflow-x-auto no-scrollbar text-xs">
-          <span className="text-slate-500 font-semibold flex items-center gap-1 shrink-0">
-            <Zap className="w-3.5 h-3.5 text-yellow-400" /> Quick Search:
+        <div className="flex items-center gap-2 pt-1 overflow-x-auto no-scrollbar text-xs relative z-10">
+          <span className="text-slate-400 font-semibold flex items-center gap-1.5 shrink-0 text-[11px]">
+            <Zap className="w-3.5 h-3.5 text-amber-400" /> Trending Discoveries:
           </span>
           {POPULAR_SEARCH_SUGGESTIONS.map((title) => (
             <button
               key={title}
               onClick={() => setSearchQuery(title)}
-              className="px-2.5 py-1 rounded-lg bg-slate-950 hover:bg-slate-800 text-slate-300 hover:text-indigo-300 border border-slate-800 text-[11px] font-medium shrink-0 transition-colors"
+              className="px-2.5 py-1 rounded-lg bg-slate-950/70 hover:bg-indigo-600/20 text-slate-300 hover:text-indigo-300 border border-slate-800/80 hover:border-indigo-500/40 text-[11px] font-medium shrink-0 transition-all"
             >
               {title}
             </button>
@@ -298,35 +301,40 @@ const BrowseAndRecs = ({ onSelectMovie, onRateMovie }) => {
         <>
           {/* Recommended For You Section */}
           <section className="space-y-4">
-            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-              <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-gradient-to-tr from-indigo-500 to-pink-500 text-white shadow-md shadow-indigo-500/20">
-                  <Sparkles className="w-4 h-4" />
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 p-4 rounded-3xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-md">
+              <div className="flex items-center gap-3">
+                <div className="p-2.5 rounded-2xl bg-gradient-to-tr from-indigo-600 via-purple-600 to-pink-500 text-white shadow-lg shadow-indigo-600/30">
+                  <Sparkles className="w-5 h-5 drop-shadow" />
                 </div>
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
-                    Recommended For You
-                  </h2>
-                  <p className="text-xs text-slate-400">
-                    Personalized for <span className="text-indigo-400 font-bold">{currentUser?.name}</span> ({currentUser?.cluster?.cluster_name || 'Active Persona'})
+                  <div className="flex items-center gap-2">
+                    <h2 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+                      Recommended For You
+                    </h2>
+                    <span className="text-[10px] font-black uppercase px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                      Live AI
+                    </span>
+                  </div>
+                  <p className="text-xs text-slate-400 mt-0.5">
+                    Tailored for <span className="text-indigo-300 font-bold">{currentUser?.name}</span> • <span className="text-slate-300 font-medium">{currentUser?.cluster?.cluster_name || 'Active Persona'}</span>
                   </p>
                 </div>
               </div>
 
-              {/* Quick Algorithm Toggle */}
-              <div className="flex items-center gap-1.5 bg-slate-900 p-1 rounded-xl border border-slate-800 self-start sm:self-auto">
+              {/* Quick Algorithm Toggle Island */}
+              <div className="flex items-center gap-1.5 bg-slate-950/90 p-1.5 rounded-full border border-slate-800 self-start sm:self-auto shadow-inner">
                 {[
-                  { id: 'hybrid', label: '⭐ Hybrid (Best)' },
+                  { id: 'hybrid', label: '⭐ Hybrid (SVD+CB)' },
                   { id: 'collaborative', label: '👥 Collaborative' },
-                  { id: 'content_based', label: '🎬 Similar Content' },
+                  { id: 'content_based', label: '🎬 Cosine Content' },
                 ].map((btn) => (
                   <button
                     key={btn.id}
                     onClick={() => setActiveModel(btn.id)}
-                    className={`px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-200 ${
                       activeModel === btn.id
-                        ? 'bg-indigo-600 text-white shadow-md'
-                        : 'text-slate-400 hover:text-white'
+                        ? 'bg-gradient-to-r from-indigo-600 to-purple-600 text-white shadow-md shadow-indigo-600/30 scale-102 border border-indigo-400/30'
+                        : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
                     }`}
                   >
                     {btn.label}
