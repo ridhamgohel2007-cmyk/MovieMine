@@ -8,8 +8,11 @@
 **Academic Year:** 2026–27  
 
 **Submitted by:**
-- **Gohel Ridham – 240170107041**
-- **Prajapati Vaidik Shaileshbhai – 240170107116**
+
+| Sr. No. | Name of Student | Enrollment No. |
+| :---: | :--- | :---: |
+| 1 | **Gohel Ridham Manojkumar** | **240170107121** |
+| 2 | **Prajapati Vaidik Shaileshbhai** | **240170107116** |
 
 **Submitted to:**
 - **Prof. Niyati Shah**, VGEC, Chandkheda
@@ -18,7 +21,7 @@
 
 ## Certificate
 
-This is to certify that **Gohel Ridham** (Enrollment No. **240170107041**) and **Prajapati Vaidik Shaileshbhai** (Enrollment No. **240170107116**), students of B.E. Semester V, Department of Computer Engineering, have successfully completed the PBL/Mini Project titled **“Movie Recommendation and Preference Mining System Using Data Mining Techniques”** during the academic year **2026–27**.
+This is to certify that **Gohel Ridham Manojkumar** (Enrollment No. **240170107121**) and **Prajapati Vaidik Shaileshbhai** (Enrollment No. **240170107116**), students of B.E. Semester V, Department of Computer Engineering, have successfully completed the PBL/Mini Project titled **“Movie Recommendation and Preference Mining System Using Data Mining Techniques”** during the academic year **2026–27**.
 
 **Place:** VGEC, Chandkheda  
 **Date:** _______________  

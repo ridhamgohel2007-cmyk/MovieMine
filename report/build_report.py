@@ -209,10 +209,29 @@ html_content = f"""<!DOCTYPE html>
     </div>
 
     <div>
-      <div style="font-size: 11pt; font-weight: bold; margin-bottom: 8px;">Submitted by</div>
-      <div class="cover-team">
-        <strong>Gohel Ridham – 240170107041</strong><br>
-        <strong>Prajapati Vaidik Shaileshbhai – 240170107116</strong>
+      <div style="display: inline-block; border: 1.5px solid #1e3a8a; border-radius: 6px; padding: 8px 16px; background: #f8fafc; box-shadow: 0 1px 3px rgba(0,0,0,0.06); margin: 6px auto;">
+        <div style="font-size: 10pt; font-weight: bold; margin-bottom: 6px; color: #1e3a8a; text-transform: uppercase; letter-spacing: 0.5px;">Submitted by:</div>
+        <table style="border-collapse: collapse; margin: 0 auto; text-align: left;">
+          <thead>
+            <tr style="border-bottom: 1.5px solid #cbd5e1; background: #f1f5f9;">
+              <th style="padding: 4px 10px; font-size: 9.5pt; font-weight: bold; color: #1e3a8a; border-right: 1px solid #cbd5e1; text-align: center;">Sr. No.</th>
+              <th style="padding: 4px 14px; font-size: 9.5pt; font-weight: bold; color: #1e3a8a; border-right: 1px solid #cbd5e1;">Name of Student</th>
+              <th style="padding: 4px 14px; font-size: 9.5pt; font-weight: bold; color: #1e3a8a; text-align: center;">Enrollment No.</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom: 1px solid #e2e8f0;">
+              <td style="padding: 5px 10px; text-align: center; font-size: 9.5pt; color: #475569; border-right: 1px solid #e2e8f0;">1</td>
+              <td style="padding: 5px 14px; font-size: 9.5pt; font-weight: bold; color: #0f172a; border-right: 1px solid #e2e8f0;">Gohel Ridham Manojkumar</td>
+              <td style="padding: 5px 14px; text-align: center; font-size: 9.5pt; font-weight: bold; color: #1e3a8a;">240170107121</td>
+            </tr>
+            <tr>
+              <td style="padding: 5px 10px; text-align: center; font-size: 9.5pt; color: #475569; border-right: 1px solid #e2e8f0;">2</td>
+              <td style="padding: 5px 14px; font-size: 9.5pt; font-weight: bold; color: #0f172a; border-right: 1px solid #e2e8f0;">Prajapati Vaidik Shaileshbhai</td>
+              <td style="padding: 5px 14px; text-align: center; font-size: 9.5pt; font-weight: bold; color: #1e3a8a;">240170107116</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
 
